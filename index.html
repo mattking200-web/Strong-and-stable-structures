@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 3 - Strong and Stable Structures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --orange:#FF8C42; --dark-orange:#E67530; --brown:#8B5A3C; --dark-brown:#6B4226;
+            --gray:#5A5A5A; --light-gray:#D3D3D3; --cream:#FFF8E7; --blue:#4A90E2;
+            --green:#2ECC71; --red:#E74C3C;
+        }
+        body {
+            font-family:'Quicksand',sans-serif; background:linear-gradient(135deg,var(--cream) 0%,#FFE4C4 100%);
+            color:var(--gray); line-height:1.6; padding:20px;
+        }
+        .container { max-width:1200px; margin:0 auto; background:white; border-radius:30px; box-shadow:0 20px 60px rgba(0,0,0,0.15); overflow:hidden; }
+        .header { background:linear-gradient(135deg,var(--orange) 0%,var(--dark-orange) 100%); padding:40px; text-align:center; position:relative; }
+        .header::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background-image:repeating-linear-gradient(45deg,transparent,transparent 35px,rgba(255,255,255,.1) 35px,rgba(255,255,255,.1) 70px); pointer-events:none; }
+        .header h1 { font-family:'Fredoka',sans-serif; font-size:2.5em; color:white; text-shadow:3px 3px 6px rgba(0,0,0,0.2); margin-bottom:10px; position:relative; }
+        .header .unit-title { font-family:'Fredoka',sans-serif; font-size:1.3em; color:var(--cream); font-weight:600; position:relative; }
+        .unit-selector { background:var(--brown); padding:20px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+        .unit-btn { background:white; color:var(--brown); border:3px solid var(--brown); padding:12px 20px; border-radius:15px; font-family:'Fredoka',sans-serif; font-size:0.95em; cursor:pointer; transition:all 0.3s ease; }
+        .unit-btn:hover,.unit-btn.active { background:var(--orange); color:white; border-color:var(--orange); transform:scale(1.05); }
+        .unit-content { display:none; }
+        .unit-content.active { display:block; }
+        .content { padding:40px; }
+        .section { margin-bottom:40px; }
+        .section h2 { font-family:'Fredoka',sans-serif; font-size:1.8em; color:var(--brown); margin-bottom:20px; }
+        .section h2::before { content:'🏗️ '; }
+        .text-content { background:var(--cream); padding:25px; border-radius:15px; border-left:5px solid var(--orange); margin-bottom:20px; }
+        .text-content p { font-size:1.1em; margin-bottom:10px; line-height:1.7; }
+        .text-content .emoji-large { font-size:2.5em; float:left; margin-right:15px; }
+        .read-aloud { display:inline-flex; align-items:center; gap:8px; background:var(--orange); color:white; border:none; padding:8px 16px; border-radius:25px; cursor:pointer; font-family:'Fredoka',sans-serif; font-size:0.9em; transition:all 0.3s ease; margin-top:10px; }
+        .read-aloud:hover { background:var(--dark-orange); transform:scale(1.05); }
+        .read-aloud::before { content:'🔊'; }
+        .read-aloud.playing { background:var(--green); animation:pulse 1.5s infinite; }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+        .examples-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+        .example-card { background:white; border-radius:15px; padding:20px; border:3px solid var(--light-gray); transition:all 0.3s ease; }
+        .example-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.1); border-color:var(--orange); }
+        .example-card h3 { font-family:'Fredoka',sans-serif; color:var(--brown); margin-bottom:10px; font-size:1.2em; }
+        .example-card .icon { font-size:3em; margin-bottom:10px; }
+        .image-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; }
+        .image-card { background:white; border-radius:15px; padding:15px; border:3px solid var(--light-gray); text-align:center; transition:all 0.3s ease; }
+        .image-card:hover { transform:scale(1.05); border-color:var(--orange); }
+        .image-card .emoji { font-size:3em; margin-bottom:10px; }
+        .image-card p { font-weight:600; color:var(--brown); font-size:0.9em; }
+        .drag-drop-container { background:linear-gradient(135deg,#FFF8E7 0%,#FFE4C4 100%); padding:25px; border-radius:15px; }
+        .drag-items { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; padding:15px; background:white; border-radius:15px; min-height:80px; }
+        .drag-item { background:var(--orange); color:white; padding:10px 18px; border-radius:20px; cursor:move; font-weight:600; transition:all 0.3s ease; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+        .drag-item:hover { transform:scale(1.05); box-shadow:0 6px 15px rgba(0,0,0,0.2); }
+        .drag-item.dragging { opacity:0.5; transform:rotate(5deg); }
+        .drop-zones { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; }
+        .drop-zone { background:white; border:3px dashed var(--light-gray); border-radius:15px; padding:15px; min-height:100px; transition:all 0.3s ease; }
+        .drop-zone h4 { font-family:'Fredoka',sans-serif; color:var(--brown); margin-bottom:10px; font-size:1.1em; }
+        .drop-zone.drag-over { background:#FFF8E7; border-color:var(--orange); border-style:solid; }
+        .drop-zone .dropped-items { display:flex; flex-wrap:wrap; gap:8px; }
+        .check-button,.reset-button { background:var(--blue); color:white; border:none; padding:12px 30px; border-radius:25px; font-family:'Fredoka',sans-serif; font-size:1em; cursor:pointer; margin-top:15px; transition:all 0.3s ease; }
+        .check-button:hover { background:#3A7BC8; transform:scale(1.05); }
+        .reset-button { background:var(--gray); margin-left:10px; }
+        .reset-button:hover { background:var(--dark-brown); transform:scale(1.05); }
+        .feedback { margin-top:15px; padding:15px; border-radius:15px; font-weight:600; font-size:1.05em; display:none; }
+        .feedback.correct { background:#D4EDDA; color:#155724; border:2px solid var(--green); display:block; }
+        .feedback.incorrect { background:#F8D7DA; color:#721C24; border:2px solid var(--red); display:block; }
+        .fill-blank-container,.quiz-container { background:white; padding:25px; border-radius:15px; border:3px solid var(--light-gray); }
+        .fill-blank-question,.quiz-question { margin-bottom:20px; padding:18px; background:var(--cream); border-radius:15px; border-left:5px solid var(--brown); }
+        .fill-blank-question p { font-size:1.05em; margin-bottom:12px; line-height:1.7; }
+        .quiz-question h4 { font-family:'Fredoka',sans-serif; color:var(--brown); font-size:1.05em; margin-bottom:12px; }
+        .fill-blank-question input { border:2px solid var(--light-gray); padding:8px 12px; border-radius:8px; font-size:1em; font-family:'Quicksand',sans-serif; width:180px; transition:all 0.3s ease; }
+        .fill-blank-question input:focus { outline:none; border-color:var(--orange); box-shadow:0 0 8px rgba(255,140,66,0.3); }
+        .fill-blank-question input.correct { border-color:var(--green); background:#D4EDDA; }
+        .fill-blank-question input.incorrect { border-color:var(--red); background:#F8D7DA; }
+        .quiz-options { display:flex; flex-direction:column; gap:8px; }
+        .quiz-option { background:white; padding:12px 18px; border-radius:10px; border:2px solid var(--light-gray); cursor:pointer; transition:all 0.3s ease; font-size:0.95em; }
+        .quiz-option:hover { background:#FFF8E7; border-color:var(--orange); transform:translateX(5px); }
+        .quiz-option.selected { background:var(--orange); color:white; border-color:var(--orange); }
+        .quiz-option.correct { background:var(--green); color:white; border-color:var(--green); }
+        .quiz-option.incorrect { background:var(--red); color:white; border-color:var(--red); }
+        .score-display { background:linear-gradient(135deg,var(--brown) 0%,var(--dark-brown) 100%); color:white; padding:20px; border-radius:15px; text-align:center; font-family:'Fredoka',sans-serif; font-size:1.3em; margin-top:15px; display:none; }
+        .footer { background:var(--brown); color:white; padding:25px; text-align:center; font-family:'Fredoka',sans-serif; }
+        @media (max-width:768px) { .content { padding:25px 15px; } .header h1 { font-size:2em; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Strong and Stable Structures</h1>
+            <div class="unit-title" id="currentUnitTitle">Unit D1.1</div>
+        </div>
+        <div class="unit-selector">
+            <button class="unit-btn active" onclick="showUnit(1)">D1.1</button>
+            <button class="unit-btn" onclick="showUnit(2)">D1.2</button>
+            <button class="unit-btn" onclick="showUnit(3)">D2.1</button>
+            <button class="unit-btn" onclick="showUnit(4)">D2.2</button>
+            <button class="unit-btn" onclick="showUnit(5)">D2.3</button>
+            <button class="unit-btn" onclick="showUnit(6)">D2.4</button>
+            <button class="unit-btn" onclick="showUnit(7)">D2.5</button>
+            <button class="unit-btn" onclick="showUnit(8)">D2.6</button>
+            <button class="unit-btn" onclick="showUnit(9)">D2.7</button>
+        </div>
+
+<!-- UNIT D1.1 -->
+<div id="unit1" class="unit-content active">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">🏢</span>
+<p>Structures are all around us! A structure is something that has been built to hold or support something. Think about your school building, bridges, houses, and playground equipment.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🌍</span>
+<p>Every structure we build has an effect on our society and our environment. Society means the people and communities we live in. The environment is the natural world around us.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">👷</span>
+<p>Structures help people in many ways. They give us places to live, work, and play. They help us travel. They keep us safe from weather. These are positive effects on society!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🌳</span>
+<p>Building can have negative effects on the environment. We might cut down trees, use up natural resources like wood and metal, and create pollution. Construction machines create smoke.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">♻️</span>
+<p>People are finding better ways to build! We can use recycled materials, build green buildings that use less energy, protect animal habitats, and plant new trees.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">🏫</div>
+<h3>Schools</h3>
+<p>Give students a place to learn. Building uses lots of materials. Solution: Use solar panels and natural light!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🌉</div>
+<h3>Bridges</h3>
+<p>Help people cross rivers safely. Can block fish from swimming upstream. Solution: Build fish ladders!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🏡</div>
+<h3>Houses</h3>
+<p>Provide shelter for families. Can be built on animal habitats. Solution: Use eco-friendly materials!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🎢</div>
+<h3>Playgrounds</h3>
+<p>Give children places to play. Old equipment can have harmful chemicals. Solution: Use recycled plastic!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems1">
+<div class="drag-item" draggable="true">Gives people homes</div>
+<div class="drag-item" draggable="true">Cuts down trees</div>
+<div class="drag-item" draggable="true">Creates jobs for workers</div>
+<div class="drag-item" draggable="true">Uses natural resources</div>
+<div class="drag-item" draggable="true">Provides safe roads</div>
+<div class="drag-item" draggable="true">Creates pollution</div>
+<div class="drag-item" draggable="true">Places for communities</div>
+<div class="drag-item" draggable="true">Disturbs habitats</div>
+</div>
+<div class="drop-zones">
+<div class="drop-zone" data-category="positive">
+<h4>✅ Positive Effects</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="negative">
+<h4>⚠️ Negative Effects</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(1)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(1)">Reset</button>
+</div>
+<div id="dragFeedback1" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. <input type="text" id="unit1_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. <input type="text" id="unit1_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. <input type="text" id="unit1_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. <input type="text" id="unit1_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. <input type="text" id="unit1_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(1)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(1)">Reset</button>
+</div>
+<div id="blankFeedback1" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz1">
+<div class="quiz-question">
+<h4>1. Which is a positive effect of building structures?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">They give us safe places to live and work</div>
+<div class="quiz-option" data-answer="b">They create lots of pollution</div>
+<div class="quiz-option" data-answer="c">They always harm animals</div>
+<div class="quiz-option" data-answer="d">They use up all resources</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. What is one way building negatively affects the environment?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">Helps animals find homes</div>
+<div class="quiz-option" data-answer="b">Makes the air cleaner</div>
+<div class="quiz-option" data-answer="c">It can disturb animal habitats</div>
+<div class="quiz-option" data-answer="d">It plants more trees</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. What is one solution to make building better?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Use more fuel</div>
+<div class="quiz-option" data-answer="b">Use recycled materials</div>
+<div class="quiz-option" data-answer="c">Cut down more trees</div>
+<div class="quiz-option" data-answer="d">Create more pollution</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. What does society mean?</h4>
+<div class="quiz-options" data-correct="d">
+<div class="quiz-option" data-answer="a">Only buildings we make</div>
+<div class="quiz-option" data-answer="b">Only animals and plants</div>
+<div class="quiz-option" data-answer="c">Only the air</div>
+<div class="quiz-option" data-answer="d">The people and communities we live in</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. How can bridges negatively affect fish?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">They can block fish from swimming upstream</div>
+<div class="quiz-option" data-answer="b">They make water too warm</div>
+<div class="quiz-option" data-answer="c">They help fish swim faster</div>
+<div class="quiz-option" data-answer="d">They give fish more food</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(1)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(1)">Reset</button>
+</div>
+<div id="scoreDisplay1" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+
+<!-- UNIT D1.2 -->
+<div id="unit2" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">🐝</span>
+<p>Did you know that animals build structures too? Bees build hives, birds build nests, beavers build dams, and spiders build webs. These animal structures are just as important!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🦫</span>
+<p>Animal structures have different effects than human structures. When a beaver builds a dam, it creates a pond. This new pond can help some plants and animals.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🏗️</span>
+<p>Human structures often have a bigger impact on the environment. We use machines, cut down many trees at once, and build very large structures. We use materials like concrete and steel.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🌱</span>
+<p>Animal structures usually work with nature. A bird's nest uses twigs and grass that will break down naturally. A beaver dam uses branches and mud.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">💡</span>
+<p>We can learn from how animals build! Scientists study animal structures to find better ways for humans to build. This is called biomimicry.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">🦫</div>
+<h3>Beavers</h3>
+<p>Build dams and lodges from sticks and mud. Create wetlands that help many plants and animals. Can flood areas and change water flow.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🐝</div>
+<h3>Honeybees</h3>
+<p>Build hives with hexagon-shaped cells from beeswax. Help pollinate plants. Use very little space and resources.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🐜</div>
+<h3>Ants</h3>
+<p>Build underground tunnels and hills. Help mix and aerate soil which is good for plants. Don't harm the environment around them.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🐦</div>
+<h3>Birds</h3>
+<p>Build nests from twigs, grass, and feathers. Use natural materials that break down easily. Build in trees without cutting them down.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems2">
+<div class="drag-item" draggable="true">Beaver dam</div>
+<div class="drag-item" draggable="true">School building</div>
+<div class="drag-item" draggable="true">Spider web</div>
+<div class="drag-item" draggable="true">Highway bridge</div>
+<div class="drag-item" draggable="true">Beehive</div>
+<div class="drag-item" draggable="true">Shopping mall</div>
+<div class="drag-item" draggable="true">Bird nest</div>
+<div class="drag-item" draggable="true">Apartment building</div>
+</div>
+<div class="drop-zones">
+<div class="drop-zone" data-category="animal">
+<h4>🦫 Built by Animals</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="human">
+<h4>👷 Built by Humans</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(2)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(2)">Reset</button>
+</div>
+<div id="dragFeedback2" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. <input type="text" id="unit2_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. <input type="text" id="unit2_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. <input type="text" id="unit2_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. <input type="text" id="unit2_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. <input type="text" id="unit2_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(2)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(2)">Reset</button>
+</div>
+<div id="blankFeedback2" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz2">
+<div class="quiz-question">
+<h4>1. Which animal builds dams that create ponds?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Birds</div>
+<div class="quiz-option" data-answer="b">Beavers</div>
+<div class="quiz-option" data-answer="c">Spiders</div>
+<div class="quiz-option" data-answer="d">Ants</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. How are animal structures different from human structures?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">Animals use concrete</div>
+<div class="quiz-option" data-answer="b">Animals build bigger</div>
+<div class="quiz-option" data-answer="c">Animals use materials that break down naturally</div>
+<div class="quiz-option" data-answer="d">Animals use machines</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. What is biomimicry?</h4>
+<div class="quiz-options" data-correct="d">
+<div class="quiz-option" data-answer="a">Building with animals</div>
+<div class="quiz-option" data-answer="b">Only using natural materials</div>
+<div class="quiz-option" data-answer="c">Protecting animal homes</div>
+<div class="quiz-option" data-answer="d">Copying nature to build better</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. What shape are the cells in a beehive?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">Hexagons</div>
+<div class="quiz-option" data-answer="b">Circles</div>
+<div class="quiz-option" data-answer="c">Squares</div>
+<div class="quiz-option" data-answer="d">Triangles</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. How do ant hills help the environment?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">They clean the air</div>
+<div class="quiz-option" data-answer="b">They mix and aerate soil which helps plants</div>
+<div class="quiz-option" data-answer="c">They store water</div>
+<div class="quiz-option" data-answer="d">They provide homes for birds</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(2)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(2)">Reset</button>
+</div>
+<div id="scoreDisplay2" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+
+<!-- UNIT D2.1 -->
+<div id="unit3" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">🏗️</span>
+<p>A structure is a supporting framework that holds a load and has a definite size, shape, and function. This means a structure supports weight, has a specific size and shape, and does a job!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🌲</span>
+<p>Structures can be found in the natural environment. Trees are natural structures that hold up branches and leaves. Mountains are structures. Your skeleton is a natural structure inside your body!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🏢</span>
+<p>Structures can be in the built environment. The built environment means things that people have made. Houses, schools, bridges, chairs, and desks are all built structures.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">📏</span>
+<p>Every structure has three important things: size, shape, and function. The size tells us how big it is. The shape tells us what it looks like. The function tells us what job it does.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">⚖️</span>
+<p>All structures hold a load. A load is the weight that a structure has to support. Your chair holds your body. A bridge holds cars and trucks. A tree holds its own branches and leaves!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">🏫</div>
+<h3>School Building</h3>
+<p>Size: Large, multi-room. Shape: Rectangular with rooms. Function: Provide space for learning. Load: Students, teachers, desks, books.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🪑</div>
+<h3>Chair</h3>
+<p>Size: Small, fits one person. Shape: Seat with legs and back. Function: Provide a place to sit. Load: Person sitting on it.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🌉</div>
+<h3>Bridge</h3>
+<p>Size: Long and wide. Shape: Flat surface supported by beams. Function: Help people cross water. Load: Cars, trucks, people.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">📚</div>
+<h3>Bookshelf</h3>
+<p>Size: Tall with levels. Shape: Vertical with horizontal shelves. Function: Store and organize books. Load: Many books and items.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems3">
+<div class="drag-item" draggable="true">Tree trunk</div>
+<div class="drag-item" draggable="true">Desk</div>
+<div class="drag-item" draggable="true">Mountain</div>
+<div class="drag-item" draggable="true">House</div>
+<div class="drag-item" draggable="true">Skeleton</div>
+<div class="drag-item" draggable="true">Fence</div>
+<div class="drag-item" draggable="true">Coral reef</div>
+<div class="drag-item" draggable="true">Playground</div>
+</div>
+<div class="drop-zones">
+<div class="drop-zone" data-category="natural">
+<h4>🌲 Natural Environment</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="built">
+<h4>🏗️ Built Environment</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(3)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(3)">Reset</button>
+</div>
+<div id="dragFeedback3" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. <input type="text" id="unit3_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. <input type="text" id="unit3_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. <input type="text" id="unit3_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. <input type="text" id="unit3_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. <input type="text" id="unit3_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(3)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(3)">Reset</button>
+</div>
+<div id="blankFeedback3" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz3">
+<div class="quiz-question">
+<h4>1. What is a structure?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">A supporting framework that holds a load with size, shape, and function</div>
+<div class="quiz-option" data-answer="b">Only buildings people make</div>
+<div class="quiz-option" data-answer="c">Something always made of wood</div>
+<div class="quiz-option" data-answer="d">Only things in nature</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. Which is a natural structure?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">A school</div>
+<div class="quiz-option" data-answer="b">A bridge</div>
+<div class="quiz-option" data-answer="c">A tree</div>
+<div class="quiz-option" data-answer="d">A fence</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. What is a load?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">The color of a structure</div>
+<div class="quiz-option" data-answer="b">The weight a structure supports</div>
+<div class="quiz-option" data-answer="c">The size of a structure</div>
+<div class="quiz-option" data-answer="d">The material it's made from</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. What does the function of a structure tell us?</h4>
+<div class="quiz-options" data-correct="d">
+<div class="quiz-option" data-answer="a">How big it is</div>
+<div class="quiz-option" data-answer="b">What color it is</div>
+<div class="quiz-option" data-answer="c">How old it is</div>
+<div class="quiz-option" data-answer="d">What job it does</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. Which is in the built environment?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">A desk</div>
+<div class="quiz-option" data-answer="b">A mountain</div>
+<div class="quiz-option" data-answer="c">A skeleton</div>
+<div class="quiz-option" data-answer="d">A tree trunk</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(3)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(3)">Reset</button>
+</div>
+<div id="scoreDisplay3" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+<!-- UNIT D2.2 -->
+<div id="unit4" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">🎯</span>
+<p>Form and function means that the shape of a structure (its form) matches what it needs to do (its function). The way something looks should help it do its job better!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🚗</span>
+<p>Think about a car. Its form is a streamlined shape low to the ground. Its function is to move people quickly and safely. The smooth form helps it cut through air and go faster!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🏠</span>
+<p>A house has a triangular roof. Why? The triangular form allows rain and snow to slide off easily. If roofs were flat, water could pile up. The triangle shape helps the roof do its job!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🪑</span>
+<p>Different structures have different forms because they have different functions. A stool has no back for quick sitting. An office chair has wheels and armrests for comfortable long sitting.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🦒</span>
+<p>Even in nature, form follows function! A giraffe has a very long neck (form) so it can reach leaves high up in trees (function). Nature is an expert at matching form and function!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">✏️</div>
+<h3>Pencil</h3>
+<p>Form: Long, thin cylinder with pointed end. Function: Write and draw. The pointed tip creates clear marks, and the long shape is easy to hold!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">☂️</div>
+<h3>Umbrella</h3>
+<p>Form: Dome or curved canopy. Function: Keep rain off you. The curved dome makes water run off the sides instead of pooling on top!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🌉</div>
+<h3>Arch Bridge</h3>
+<p>Form: Curved arch shape. Function: Support weight while spanning a gap. The arch spreads weight evenly down to the supports!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🪜</div>
+<h3>Ladder</h3>
+<p>Form: Two vertical poles with horizontal steps. Function: Help people climb up high. Steps provide footholds, and vertical poles keep it stable!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems4">
+<div class="drag-item" draggable="true">Pointed tip</div>
+<div class="drag-item" draggable="true">Wheels</div>
+<div class="drag-item" draggable="true">Hollow inside</div>
+<div class="drag-item" draggable="true">Triangular roof</div>
+<div class="drag-item" draggable="true">Wide base</div>
+<div class="drag-item" draggable="true">Curved dome</div>
+</div><div class="drop-zones"><div class="drop-zone" data-category="writing">
+<h4>✏️ For Writing</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="moving">
+<h4>🚗 For Easy Moving</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="light">
+<h4>🦴 For Being Light</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="rain">
+<h4>☔ For Shedding Rain</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(4)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(4)">Reset</button>
+</div>
+<div id="dragFeedback4" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. Answer: <input type="text" id="unit4_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. Answer: <input type="text" id="unit4_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. Answer: <input type="text" id="unit4_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. Answer: <input type="text" id="unit4_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. Answer: <input type="text" id="unit4_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(4)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(4)">Reset</button>
+</div>
+<div id="blankFeedback4" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz4">
+<div class="quiz-question">
+<h4>1. What does form and function mean?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Structures are square</div>
+<div class="quiz-option" data-answer="b">The shape matches what it needs to do</div>
+<div class="quiz-option" data-answer="c">All structures look the same</div>
+<div class="quiz-option" data-answer="d">Structures should be colorful</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. Why do houses have triangular roofs?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">They look pretty</div>
+<div class="quiz-option" data-answer="b">Easier to build</div>
+<div class="quiz-option" data-answer="c">Rain and snow slide off easily</div>
+<div class="quiz-option" data-answer="d">They use less materials</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. Why does a pencil have a pointed tip?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">To create clear marks when writing</div>
+<div class="quiz-option" data-answer="b">To make it look nice</div>
+<div class="quiz-option" data-answer="c">To be easier to hold</div>
+<div class="quiz-option" data-answer="d">To save wood</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. How does an arch bridge's form help its function?</h4>
+<div class="quiz-options" data-correct="d">
+<div class="quiz-option" data-answer="a">It looks beautiful</div>
+<div class="quiz-option" data-answer="b">Easy to paint</div>
+<div class="quiz-option" data-answer="c">Uses less material</div>
+<div class="quiz-option" data-answer="d">The curve spreads weight evenly</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. Why do birds have hollow bones?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">To store food</div>
+<div class="quiz-option" data-answer="b">To be light enough to fly</div>
+<div class="quiz-option" data-answer="c">To make music</div>
+<div class="quiz-option" data-answer="d">To grow faster</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(4)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(4)">Reset</button>
+</div>
+<div id="scoreDisplay4" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+
+<!-- UNIT D2.3 -->
+<div id="unit5" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">💪</span>
+<p>The strength of a structure is its ability to support a load without breaking or bending too much. A strong structure can hold a lot of weight!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🧱</span>
+<p>We can make structures stronger by using stronger materials. Concrete and steel are very strong materials that can hold heavy loads. Wood is also strong, especially when thick.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">📐</span>
+<p>The shape of a structure affects its strength. Triangles are one of the strongest shapes because they don't change shape easily when force is applied. That's why you see triangles in bridges!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">📏</span>
+<p>Making materials thicker can increase strength. A thick wooden beam is stronger than a thin one. More material means more strength to resist bending and breaking!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🏗️</span>
+<p>Adding supports and braces can make structures stronger. A table gets wobbly with only corner legs. Adding diagonal braces makes the table much stronger and prevents wobbling!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">🧱</div>
+<h3>Use Strong Materials</h3>
+<p>Steel, concrete, and thick wood can support heavy loads. Steel is stronger than plastic. Concrete is stronger than cardboard. Choosing the right material matters!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">📏</div>
+<h3>Make It Thicker</h3>
+<p>Thicker materials are stronger. A thick book is harder to bend than a single page. A thick rope holds more weight. Thickness adds strength!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🔺</div>
+<h3>Use Triangles</h3>
+<p>Triangular shapes are very strong and don't collapse easily. Bridges use triangular trusses. Towers have triangular supports. Triangles spread forces evenly!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🔩</div>
+<h3>Add Supports</h3>
+<p>Extra beams, braces, and columns add strength. A shelf with a center support holds more books. A chair with cross-braces is sturdier. More supports mean more strength!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems5">
+<div class="drag-item" draggable="true">Using steel instead of plastic</div>
+<div class="drag-item" draggable="true">Making materials thinner</div>
+<div class="drag-item" draggable="true">Adding triangular braces</div>
+<div class="drag-item" draggable="true">Removing support columns</div>
+<div class="drag-item" draggable="true">Using thicker beams</div>
+<div class="drag-item" draggable="true">Taking away supports</div>
+<div class="drag-item" draggable="true">Adding more legs</div>
+<div class="drag-item" draggable="true">Using weaker materials</div>
+</div><div class="drop-zones"><div class="drop-zone" data-category="increase">
+<h4>💪 Increases Strength</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="decrease">
+<h4>❌ Decreases Strength</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(5)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(5)">Reset</button>
+</div>
+<div id="dragFeedback5" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. Answer: <input type="text" id="unit5_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. Answer: <input type="text" id="unit5_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. Answer: <input type="text" id="unit5_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. Answer: <input type="text" id="unit5_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. Answer: <input type="text" id="unit5_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(5)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(5)">Reset</button>
+</div>
+<div id="blankFeedback5" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz5">
+<div class="quiz-question">
+<h4>1. What is the strength of a structure?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">How colorful it is</div>
+<div class="quiz-option" data-answer="b">Its ability to support a load without breaking</div>
+<div class="quiz-option" data-answer="c">How big it is</div>
+<div class="quiz-option" data-answer="d">How old it is</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. Why are triangles used in structures?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">They are very strong and don't change shape easily</div>
+<div class="quiz-option" data-answer="b">They look pretty</div>
+<div class="quiz-option" data-answer="c">Easy to draw</div>
+<div class="quiz-option" data-answer="d">They use less material</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. Which material is stronger?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">Thin cardboard</div>
+<div class="quiz-option" data-answer="b">Plastic wrap</div>
+<div class="quiz-option" data-answer="c">Steel beam</div>
+<div class="quiz-option" data-answer="d">Paper</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. How does making a beam thicker affect strength?</h4>
+<div class="quiz-options" data-correct="d">
+<div class="quiz-option" data-answer="a">Makes it weaker</div>
+<div class="quiz-option" data-answer="b">Doesn't change strength</div>
+<div class="quiz-option" data-answer="c">Makes it lighter</div>
+<div class="quiz-option" data-answer="d">Makes it stronger</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. What can you add to a table to make it stronger?</h4>
+<div class="quiz-options" data-correct="a">
+<div class="quiz-option" data-answer="a">Diagonal braces between the legs</div>
+<div class="quiz-option" data-answer="b">Paint</div>
+<div class="quiz-option" data-answer="c">Decorations</div>
+<div class="quiz-option" data-answer="d">A tablecloth</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(5)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(5)">Reset</button>
+</div>
+<div id="scoreDisplay5" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+
+<!-- UNIT D2.4 -->
+<div id="unit6" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">⚖️</span>
+<p>The stability of a structure is its ability to keep its shape, maintain balance, float, or stay fixed when a force is applied. A stable structure doesn't tip over or wobble easily!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🎯</span>
+<p>The center of gravity is important for stability. This is the point where all weight is balanced. If the center of gravity is low and centered, the structure is more stable!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">📐</span>
+<p>A wide base makes a structure more stable. Think about a pyramid - it has a very wide base and gets narrower at top. This makes it hard to knock over!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">⚓</span>
+<p>Structures can be more stable by being fixed or anchored to something. A tent uses stakes in the ground. A bookshelf attached to the wall won't tip over!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🛟</span>
+<p>Some structures need to float to be stable. Boats are designed with hulls that displace water and keep them floating upright. The shape and weight distribution matter!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">📐</div>
+<h3>Widen the Base</h3>
+<p>A wider base provides more support and makes it harder to tip. Imagine pushing over a cone - it's easier upside down (narrow base) than right side up!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">⬇️</div>
+<h3>Lower Center of Gravity</h3>
+<p>Put heavy things on bottom and light things on top. A truck carrying rocks on bottom is more stable than with rocks piled high on top!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🔗</div>
+<h3>Anchor or Attach</h3>
+<p>Fixing structures prevents tipping. Tents use stakes, tall buildings have deep foundations, and bookshelves can be secured to walls!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">⚖️</div>
+<h3>Balance the Weight</h3>
+<p>Distribute weight evenly on all sides. A backpack with heavy books on one side makes you lean. Spreading weight evenly keeps you balanced!</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems6">
+<div class="drag-item" draggable="true">Wide base</div>
+<div class="drag-item" draggable="true">Narrow base</div>
+<div class="drag-item" draggable="true">Low center of gravity</div>
+<div class="drag-item" draggable="true">High center of gravity</div>
+<div class="drag-item" draggable="true">Anchored to ground</div>
+<div class="drag-item" draggable="true">Not attached</div>
+<div class="drag-item" draggable="true">Weight evenly distributed</div>
+<div class="drag-item" draggable="true">All weight on one side</div>
+</div><div class="drop-zones"><div class="drop-zone" data-category="stable">
+<h4>⚖️ For Stability</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="unstable">
+<h4>❌ Less Stable</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(6)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(6)">Reset</button>
+</div>
+<div id="dragFeedback6" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. Answer: <input type="text" id="unit6_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. Answer: <input type="text" id="unit6_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. Answer: <input type="text" id="unit6_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. Answer: <input type="text" id="unit6_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. Answer: <input type="text" id="unit6_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(6)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(6)">Reset</button>
+</div>
+<div id="blankFeedback6" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz6">
+<div class="quiz-question">
+<h4>1. What is stability?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">How colorful something is</div>
+<div class="quiz-option" data-answer="b">Ability to keep shape and not tip over</div>
+<div class="quiz-option" data-answer="c">How big something is</div>
+<div class="quiz-option" data-answer="d">How old something is</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. Why does a wide base make structures more stable?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">It looks better</div>
+<div class="quiz-option" data-answer="b">It provides more support and is harder to tip</div>
+<div class="quiz-option" data-answer="c">It uses less material</div>
+<div class="quiz-option" data-answer="d">It's easier to build</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. What is the center of gravity?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">The color of a structure</div>
+<div class="quiz-option" data-answer="b">The point where all weight is balanced</div>
+<div class="quiz-option" data-answer="c">The highest point</div>
+<div class="quiz-option" data-answer="d">The bottom of a structure</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. How can you make a bookshelf more stable?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">Paint it</div>
+<div class="quiz-option" data-answer="b">Make it taller</div>
+<div class="quiz-option" data-answer="c">Attach it to the wall</div>
+<div class="quiz-option" data-answer="d">Put books on top shelf only</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. What makes a boat stable in water?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Being very heavy</div>
+<div class="quiz-option" data-answer="b">The hull shape and weight distribution</div>
+<div class="quiz-option" data-answer="c">Being very light</div>
+<div class="quiz-option" data-answer="d">Having no weight</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(6)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(6)">Reset</button>
+</div>
+<div id="scoreDisplay6" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+
+<!-- UNIT D2.5 -->
+<div id="unit7" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">🧱</span>
+<p>When building structures, we need to think about the properties of materials. Properties are the special characteristics that materials have, like being hard, soft, flexible, or rigid.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">💪</span>
+<p>Strength is an important property. Strong materials like steel and concrete can hold heavy loads. Weak materials like paper and thin plastic cannot hold much weight.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🔄</span>
+<p>Flexibility means a material can bend without breaking. Rubber and fabric are flexible. Rigidity means a material doesn't bend easily. Wood and metal are rigid materials.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">💧</span>
+<p>Some materials are waterproof while others absorb water. Plastic and metal don't absorb water, making them good for outdoor structures. Wood can absorb water and might rot.</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🌡️</span>
+<p>Materials react differently to temperature. Some materials expand when hot and contract when cold. Builders must consider how materials will behave in different weather!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">🧱</div>
+<h3>Concrete</h3>
+<p>Properties: Very strong, rigid, heavy, waterproof. Good for: Foundations, walls, roads. Not good for: Flexible items, lightweight structures.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🪵</div>
+<h3>Wood</h3>
+<p>Properties: Strong, can be flexible, lighter than concrete, absorbs water. Good for: Frames, furniture, floors. Not good for: Underwater structures.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🔩</div>
+<h3>Steel</h3>
+<p>Properties: Very strong, rigid, heavy, waterproof, conducts heat. Good for: Bridges, beams, tall buildings. Not good for: Lightweight needs.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🧵</div>
+<h3>Fabric</h3>
+<p>Properties: Flexible, lightweight, can be waterproof, soft. Good for: Tents, awnings, sails. Not good for: Supporting heavy loads.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems7">
+<div class="drag-item" draggable="true">Very strong</div>
+<div class="drag-item" draggable="true">Weak</div>
+<div class="drag-item" draggable="true">Flexible</div>
+<div class="drag-item" draggable="true">Rigid</div>
+<div class="drag-item" draggable="true">Waterproof</div>
+<div class="drag-item" draggable="true">Absorbs water</div>
+<div class="drag-item" draggable="true">Lightweight</div>
+<div class="drag-item" draggable="true">Very heavy</div>
+</div><div class="drop-zones"><div class="drop-zone" data-category="concrete">
+<h4>🧱 Concrete Properties</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="fabric">
+<h4>🧵 Fabric Properties</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(7)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(7)">Reset</button>
+</div>
+<div id="dragFeedback7" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. Answer: <input type="text" id="unit7_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. Answer: <input type="text" id="unit7_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. Answer: <input type="text" id="unit7_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. Answer: <input type="text" id="unit7_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. Answer: <input type="text" id="unit7_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(7)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(7)">Reset</button>
+</div>
+<div id="blankFeedback7" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz7">
+<div class="quiz-question">
+<h4>1. What are properties of materials?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Their colors only</div>
+<div class="quiz-option" data-answer="b">Special characteristics like being hard or soft</div>
+<div class="quiz-option" data-answer="c">How old they are</div>
+<div class="quiz-option" data-answer="d">Where they come from</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. Which property means a material can bend without breaking?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Strength</div>
+<div class="quiz-option" data-answer="b">Flexibility</div>
+<div class="quiz-option" data-answer="c">Waterproof</div>
+<div class="quiz-option" data-answer="d">Rigidity</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. Which material is best for outdoor structures in rain?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">Paper</div>
+<div class="quiz-option" data-answer="b">Cardboard</div>
+<div class="quiz-option" data-answer="c">Plastic</div>
+<div class="quiz-option" data-answer="d">Cotton</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. What property makes steel good for bridges?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">It's very soft</div>
+<div class="quiz-option" data-answer="b">It's very strong and rigid</div>
+<div class="quiz-option" data-answer="c">It's very flexible</div>
+<div class="quiz-option" data-answer="d">It's very light</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. Why might wood not be good for underwater structures?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">It's too heavy</div>
+<div class="quiz-option" data-answer="b">It's too light</div>
+<div class="quiz-option" data-answer="c">It absorbs water and might rot</div>
+<div class="quiz-option" data-answer="d">It's too strong</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(7)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(7)">Reset</button>
+</div>
+<div id="scoreDisplay7" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+
+<!-- UNIT D2.6 -->
+<div id="unit8" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">💨</span>
+<p>Forces are pushes and pulls that can affect structures. Different forces can change the shape, balance, or position of a structure. Understanding forces helps us build better!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">⬇️</span>
+<p>Gravity is a force that pulls everything down toward the ground. Gravity makes structures heavy and pulls them down. Builders must design structures to resist gravity's pull!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">💨</span>
+<p>Wind is a force that pushes against structures. Strong winds can push buildings, blow over fences, and even damage weak structures. Wind is especially strong on tall buildings!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🌊</span>
+<p>Water can apply force to structures. Flowing water pushes against dams and bridges. Waves push against docks and piers. Structures near water must be built to resist these forces!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🏋️</span>
+<p>Compression and tension are important forces. Compression squeezes and pushes materials together. Tension pulls and stretches materials apart. Different parts of structures experience different forces!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">⬇️</div>
+<h3>Gravity</h3>
+<p>Effect: Pulls structures downward. Example: A bridge must be strong enough to resist gravity pulling it down while holding cars. Solution: Strong materials and supports.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">💨</div>
+<h3>Wind</h3>
+<p>Effect: Pushes against structures sideways. Example: Tall buildings sway in strong winds. Solution: Deep foundations and flexible materials that can move slightly.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">❄️</div>
+<h3>Snow and Ice</h3>
+<p>Effect: Add weight and pressure. Example: Heavy snow on roofs can make them collapse. Solution: Sloped roofs and strong beams to hold weight.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🌊</div>
+<h3>Water Pressure</h3>
+<p>Effect: Pushes against structures. Example: Dams must withstand tons of water pushing against them. Solution: Very thick, strong concrete walls.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems8">
+<div class="drag-item" draggable="true">Pulls everything down</div>
+<div class="drag-item" draggable="true">Pushes sideways</div>
+<div class="drag-item" draggable="true">Adds weight to roofs</div>
+<div class="drag-item" draggable="true">Pushes against dams</div>
+<div class="drag-item" draggable="true">Makes tall buildings sway</div>
+<div class="drag-item" draggable="true">Makes roofs collapse</div>
+<div class="drag-item" draggable="true">Affects bridges</div>
+<div class="drag-item" draggable="true">Causes pressure</div>
+</div><div class="drop-zones"><div class="drop-zone" data-category="gravity">
+<h4>⬇️ Gravity Effects</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="wind">
+<h4>💨 Wind Effects</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="snow">
+<h4>❄️ Snow Effects</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="water">
+<h4>🌊 Water Effects</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(8)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(8)">Reset</button>
+</div>
+<div id="dragFeedback8" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. Answer: <input type="text" id="unit8_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. Answer: <input type="text" id="unit8_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. Answer: <input type="text" id="unit8_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. Answer: <input type="text" id="unit8_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. Answer: <input type="text" id="unit8_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(8)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(8)">Reset</button>
+</div>
+<div id="blankFeedback8" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz8">
+<div class="quiz-question">
+<h4>1. What are forces?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Only the color of structures</div>
+<div class="quiz-option" data-answer="b">Pushes and pulls that can affect structures</div>
+<div class="quiz-option" data-answer="c">Only how big structures are</div>
+<div class="quiz-option" data-answer="d">Only the materials used</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. What does gravity do to structures?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Pushes them sideways</div>
+<div class="quiz-option" data-answer="b">Pulls them down toward the ground</div>
+<div class="quiz-option" data-answer="c">Makes them float</div>
+<div class="quiz-option" data-answer="d">Makes them spin</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. How does wind affect tall buildings?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">It makes them shorter</div>
+<div class="quiz-option" data-answer="b">It pushes them sideways and can make them sway</div>
+<div class="quiz-option" data-answer="c">It makes them stronger</div>
+<div class="quiz-option" data-answer="d">It has no effect</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. What must a dam resist?</h4>
+<div class="quiz-options" data-correct="c">
+<div class="quiz-option" data-answer="a">Only gravity</div>
+<div class="quiz-option" data-answer="b">Only wind</div>
+<div class="quiz-option" data-answer="c">Water pressure pushing against it</div>
+<div class="quiz-option" data-answer="d">Only snow</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. What is compression?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Pulling materials apart</div>
+<div class="quiz-option" data-answer="b">A force that squeezes and pushes materials together</div>
+<div class="quiz-option" data-answer="c">Making things wet</div>
+<div class="quiz-option" data-answer="d">Making things cold</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(8)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(8)">Reset</button>
+</div>
+<div id="scoreDisplay8" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+
+<!-- UNIT D2.7 -->
+<div id="unit9" class="unit-content">
+<div class="content">
+<section class="section">
+<h2>What Are We Learning?</h2>
+<div class="text-content">
+<span class="emoji-large">🔩</span>
+<p>Struts and ties are important parts of structures under load. They work together to make structures strong and stable. Understanding them helps us build better structures!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">📏</span>
+<p>A strut is a part that pushes or supports by resisting compression. Struts are usually straight and rigid. They hold things up by being pushed on. Think of the legs of a table!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🪢</span>
+<p>A tie is a part that pulls or supports by resisting tension. Ties are usually flexible and can be pulled. They hold things together by being pulled on. Think of ropes holding up a tent!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🌉</span>
+<p>In bridges, struts and ties work together. The beams that hold the bridge up are struts (they're compressed). The cables that pull parts together are ties (they're in tension).</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+<div class="text-content">
+<span class="emoji-large">🏗️</span>
+<p>Struts and ties are everywhere! Chair legs are struts. Suspension bridge cables are ties. Your skeleton has bones (struts) and muscles and tendons (ties) working together!</p>
+<button class="read-aloud" onclick="readText(this)">Read Aloud</button>
+</div>
+</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">🪑</div>
+<h3>Chair Legs (Struts)</h3>
+<p>Role: Support your weight by resisting compression. Effect: When you sit, the legs are pushed on and compressed. They must be rigid to not collapse.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🎪</div>
+<h3>Tent Ropes (Ties)</h3>
+<p>Role: Hold tent in place by resisting tension. Effect: The ropes are pulled tight and must not break. They can be flexible like rope.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🌉</div>
+<h3>Bridge Beams (Struts)</h3>
+<p>Role: Support the bridge deck by resisting compression. Effect: The weight of cars pushes down on beams. They must be strong and rigid.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+<div class="example-card">
+<div class="icon">🪁</div>
+<h3>Kite String (Tie)</h3>
+<p>Role: Hold kite by resisting tension. Effect: Wind pulls on the kite and stretches the string. String must be strong enough not to break.</p>
+<button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
+</div>
+</div></section>
+<section class="section">
+<h2>Activity: Drag and Drop</h2>
+<div class="drag-drop-container">
+<div class="drag-items" id="dragItems9">
+<div class="drag-item" draggable="true">Chair legs</div>
+<div class="drag-item" draggable="true">Tent ropes</div>
+<div class="drag-item" draggable="true">Bridge cables</div>
+<div class="drag-item" draggable="true">Table legs</div>
+<div class="drag-item" draggable="true">Support beams</div>
+<div class="drag-item" draggable="true">Suspension cables</div>
+<div class="drag-item" draggable="true">Building columns</div>
+<div class="drag-item" draggable="true">Rope pulling tent</div>
+</div><div class="drop-zones"><div class="drop-zone" data-category="struts">
+<h4>📏 Struts (Resist Compression)</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="ties">
+<h4>🪢 Ties (Resist Tension)</h4>
+<div class="dropped-items"></div>
+</div>
+</div>
+<div>
+<button class="check-button" onclick="checkDragDrop(9)">Check</button>
+<button class="reset-button" onclick="resetDragDrop(9)">Reset</button>
+</div>
+<div id="dragFeedback9" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Fill in the Blank</h2>
+<div class="fill-blank-container">
+<div class="fill-blank-question">
+<p>1. Answer: <input type="text" id="unit9_blank1" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>2. Answer: <input type="text" id="unit9_blank2" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>3. Answer: <input type="text" id="unit9_blank3" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>4. Answer: <input type="text" id="unit9_blank4" class="blank-input"></p>
+</div>
+<div class="fill-blank-question">
+<p>5. Answer: <input type="text" id="unit9_blank5" class="blank-input"></p>
+</div>
+<div>
+<button class="check-button" onclick="checkFillBlanks(9)">Check</button>
+<button class="reset-button" onclick="resetFillBlanks(9)">Reset</button>
+</div>
+<div id="blankFeedback9" class="feedback"></div>
+</div>
+</section>
+<section class="section">
+<h2>Quiz Time!</h2>
+<div class="quiz-container" id="quiz9">
+<div class="quiz-question">
+<h4>1. What is a strut?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">A part that pulls</div>
+<div class="quiz-option" data-answer="b">A part that resists compression and pushes</div>
+<div class="quiz-option" data-answer="c">A part that bends easily</div>
+<div class="quiz-option" data-answer="d">A decoration</div>
+</div></div>
+<div class="quiz-question">
+<h4>2. What is a tie?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">A part that pushes</div>
+<div class="quiz-option" data-answer="b">A part that resists tension and pulls</div>
+<div class="quiz-option" data-answer="c">A part that is very rigid</div>
+<div class="quiz-option" data-answer="d">A color</div>
+</div></div>
+<div class="quiz-question">
+<h4>3. What are chair legs?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Ties</div>
+<div class="quiz-option" data-answer="b">Struts that resist compression</div>
+<div class="quiz-option" data-answer="c">Decorations</div>
+<div class="quiz-option" data-answer="d">Not part of the structure</div>
+</div></div>
+<div class="quiz-question">
+<h4>4. What are tent ropes?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">Struts that resist compression</div>
+<div class="quiz-option" data-answer="b">Ties that resist tension</div>
+<div class="quiz-option" data-answer="c">Not important</div>
+<div class="quiz-option" data-answer="d">Only for decoration</div>
+</div></div>
+<div class="quiz-question">
+<h4>5. How do struts and ties work together?</h4>
+<div class="quiz-options" data-correct="b">
+<div class="quiz-option" data-answer="a">They don't work together</div>
+<div class="quiz-option" data-answer="b">Struts resist compression and ties resist tension</div>
+<div class="quiz-option" data-answer="c">They only push</div>
+<div class="quiz-option" data-answer="d">They only pull</div>
+</div></div>
+<div>
+<button class="check-button" onclick="checkQuiz(9)">Submit Quiz</button>
+<button class="reset-button" onclick="resetQuiz(9)">Reset</button>
+</div>
+<div id="scoreDisplay9" class="score-display"></div>
+</div>
+</section>
+</div>
+</div>
+
+        <div class="footer">
+            <p>Grade 3 Science - Strong and Stable Structures</p>
+            <p>© 2024 | All 9 Units Complete</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSpeech = null;
+        const unitTitles = {
+            1: "D1.1: Effects on Society and Environment",
+            2: "D1.2: Animal and Human Structures",
+            3: "D2.1: What is a Structure?",
+            4: "D2.2: Form and Function",
+            5: "D2.3: Strength of Structures",
+            6: "D2.4: Stability of Structures",
+            7: "D2.5: Properties of Materials",
+            8: "D2.6: Forces on Structures",
+            9: "D2.7: Struts and Ties"
+        };
+
+        const dragAnswers = {
+            1: {positive: ["Gives people homes", "Creates jobs for workers", "Provides safe roads", "Places for communities"], negative: ["Cuts down trees", "Uses natural resources", "Creates pollution", "Disturbs habitats"]},
+            2: {animal: ["Beaver dam", "Spider web", "Beehive", "Bird nest"], human: ["School building", "Highway bridge", "Shopping mall", "Apartment building"]},
+            3: {natural: ["Tree trunk", "Mountain", "Skeleton", "Coral reef"], built: ["Desk", "House", "Fence", "Playground"]},
+            4: {writing: ["Pointed tip"], moving: ["Wheels"], light: ["Hollow inside"], rain: ["Triangular roof"], stable: ["Wide base"], protect: ["Curved dome"]},
+            5: {increase: ["Using steel instead of plastic", "Adding triangular braces", "Using thicker beams", "Adding more legs"], decrease: ["Making materials thinner", "Removing support columns", "Taking away supports", "Using weaker materials"]},
+            6: {stable: ["Wide base", "Low center of gravity", "Anchored to ground", "Weight evenly distributed"], unstable: ["Narrow base", "High center of gravity", "Not attached", "All weight on one side"]},
+            7: {concrete: ["Very strong", "Rigid", "Waterproof", "Very heavy"], fabric: ["Weak", "Flexible", "Lightweight"]},
+            8: {gravity: ["Pulls everything down", "Affects bridges"], wind: ["Pushes sideways", "Makes tall buildings sway"], snow: ["Adds weight to roofs", "Makes roofs collapse"], water: ["Pushes against dams", "Causes pressure"]},
+            9: {struts: ["Chair legs", "Table legs", "Support beams", "Building columns"], ties: ["Tent ropes", "Bridge cables", "Suspension cables", "Rope pulling tent"]}
+        };
+
+        const blankAnswers = {
+            1: {1: ["structure"], 2: ["environment"], 3: ["play"], 4: ["trees"], 5: ["recycled"]},
+            2: {1: ["beavers"], 2: ["pond"], 3: ["impact"], 4: ["grass"], 5: ["biomimicry"]},
+            3: {1: ["load"], 2: ["natural"], 3: ["built"], 4: ["shape"], 5: ["function"]},
+            4: {1: ["function"], 2: ["triangular"], 3: ["shape"], 4: ["neck"], 5: ["dome"]},
+            5: {1: ["strength"], 2: ["concrete"], 3: ["triangles"], 4: ["thicker"], 5: ["braces"]},
+            6: {1: ["stability"], 2: ["gravity"], 3: ["wide"], 4: ["anchored"], 5: ["balance"]},
+            7: {1: ["properties"], 2: ["strength"], 3: ["flexible"], 4: ["waterproof"], 5: ["temperature"]},
+            8: {1: ["forces"], 2: ["gravity"], 3: ["wind"], 4: ["water"], 5: ["compression"]},
+            9: {1: ["struts"], 2: ["ties"], 3: ["compression"], 4: ["tension"], 5: ["together"]}
+        };
+
+        function showUnit(unitNum) {
+            document.querySelectorAll('.unit-content').forEach(u => u.classList.remove('active'));
+            document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('unit' + unitNum).classList.add('active');
+            document.querySelectorAll('.unit-btn')[unitNum-1].classList.add('active');
+            document.getElementById('currentUnitTitle').textContent = unitTitles[unitNum];
+            window.scrollTo(0, 0);
+        }
+
+        function readText(element) {
+            const button = element.classList.contains('read-aloud') ? element : element.querySelector('.read-aloud');
+            const textElement = element.classList.contains('read-aloud') ? element.parentElement : element;
+            let textToRead = '';
+            const clone = textElement.cloneNode(true);
+            clone.querySelectorAll('button').forEach(btn => btn.remove());
+            textToRead = clone.textContent.trim();
+
+            if (currentSpeech) {
+                window.speechSynthesis.cancel();
+                document.querySelectorAll('.read-aloud').forEach(btn => btn.classList.remove('playing'));
+            }
+
+            if (!button.classList.contains('playing')) {
+                const speech = new SpeechSynthesisUtterance(textToRead);
+                speech.rate = 0.9;
+                speech.pitch = 1;
+                speech.volume = 1;
+                speech.onstart = () => button.classList.add('playing');
+                speech.onend = () => { button.classList.remove('playing'); currentSpeech = null; };
+                currentSpeech = speech;
+                window.speechSynthesis.speak(speech);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text/plain', e.target.textContent);
+                    e.target.classList.add('dragging');
+                });
+                item.addEventListener('dragend', e => e.target.classList.remove('dragging'));
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+                zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+                zone.addEventListener('drop', e => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    const text = e.dataTransfer.getData('text/plain');
+                    const draggedItem = document.querySelector('.dragging');
+                    if (draggedItem) zone.querySelector('.dropped-items').appendChild(draggedItem);
+                });
+            });
+
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    this.parentElement.querySelectorAll('.quiz-option').forEach(sib => sib.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+        });
+
+        function checkDragDrop(unitNum) {
+            const feedback = document.getElementById('dragFeedback' + unitNum);
+            const answers = dragAnswers[unitNum];
+            const dropZones = document.querySelectorAll(`#unit${unitNum} .drop-zone`);
+            let correct = true;
+
+            dropZones.forEach(zone => {
+                const category = zone.dataset.category;
+                const items = zone.querySelectorAll('.drag-item');
+                items.forEach(item => {
+                    const text = item.textContent;
+                    if (!answers[category] || !answers[category].some(ans => text.includes(ans.substring(0, 10)))) {
+                        correct = false;
+                    }
+                });
+            });
+
+            const allPlaced = document.querySelectorAll(`#unit${unitNum} .drop-zone .drag-item`).length === document.querySelectorAll(`#dragItems${unitNum} .drag-item`).length + document.querySelectorAll(`#unit${unitNum} .drop-zone .drag-item`).length - document.querySelectorAll(`#dragItems${unitNum} .drag-item`).length;
+
+            if (!allPlaced) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '⚠️ Please place all items first!';
+            } else if (correct) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '🎉 Excellent work! All correct!';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Not quite right. Try again!';
+            }
+        }
+
+        function resetDragDrop(unitNum) {
+            const container = document.getElementById('dragItems' + unitNum);
+            const allItems = document.querySelectorAll(`#unit${unitNum} .drag-item`);
+            allItems.forEach(item => container.appendChild(item));
+            document.getElementById('dragFeedback' + unitNum).className = 'feedback';
+        }
+
+        function checkFillBlanks(unitNum) {
+            const feedback = document.getElementById('blankFeedback' + unitNum);
+            const answers = blankAnswers[unitNum];
+            let correct = 0;
+
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById(`unit${unitNum}_blank${i}`);
+                const answer = input.value.trim().toLowerCase();
+                if (answers[i] && answers[i].some(a => answer === a.toLowerCase())) {
+                    input.classList.remove('incorrect');
+                    input.classList.add('correct');
+                    correct++;
+                } else {
+                    input.classList.remove('correct');
+                    input.classList.add('incorrect');
+                }
+            }
+
+            if (correct === 5) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = `🎉 Perfect! ${correct} out of 5 correct!`;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = `You got ${correct} out of 5 correct. Try again!`;
+            }
+        }
+
+        function resetFillBlanks(unitNum) {
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById(`unit${unitNum}_blank${i}`);
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            }
+            document.getElementById('blankFeedback' + unitNum).className = 'feedback';
+        }
+
+        function checkQuiz(unitNum) {
+            const questions = document.querySelectorAll(`#quiz${unitNum} .quiz-question`);
+            let correct = 0;
+
+            questions.forEach(question => {
+                const correctAnswer = question.querySelector('.quiz-options').dataset.correct;
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                
+                if (selectedOption) {
+                    const selectedAnswer = selectedOption.dataset.answer;
+                    if (selectedAnswer === correctAnswer) {
+                        selectedOption.classList.remove('incorrect');
+                        selectedOption.classList.add('correct');
+                        correct++;
+                    } else {
+                        selectedOption.classList.remove('correct');
+                        selectedOption.classList.add('incorrect');
+                        question.querySelector(`[data-answer="${correctAnswer}"]`).classList.add('correct');
+                    }
+                }
+            });
+
+            const scoreDisplay = document.getElementById('scoreDisplay' + unitNum);
+            scoreDisplay.style.display = 'block';
+            const percentage = Math.round((correct / questions.length) * 100);
+            const emoji = percentage === 100 ? '🏆' : percentage >= 80 ? '⭐' : percentage >= 60 ? '👍' : '📚';
+            scoreDisplay.textContent = `${emoji} Your Score: ${correct} out of ${questions.length} (${percentage}%)`;
+        }
+
+        function resetQuiz(unitNum) {
+            document.querySelectorAll(`#quiz${unitNum} .quiz-option`).forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            document.getElementById('scoreDisplay' + unitNum).style.display = 'none';
+        }
+
+        window.addEventListener('beforeunload', () => {
+            if (currentSpeech) window.speechSynthesis.cancel();
+        });
+    </script>
+</body>
+</html>
