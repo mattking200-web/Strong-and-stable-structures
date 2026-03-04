@@ -29,7 +29,6 @@
         .content { padding:40px; }
         .section { margin-bottom:40px; }
         .section h2 { font-family:'Fredoka',sans-serif; font-size:1.8em; color:var(--brown); margin-bottom:20px; }
-        .section h2::before { content:'🏗️ '; }
         .text-content { background:var(--cream); padding:25px; border-radius:15px; border-left:5px solid var(--orange); margin-bottom:20px; }
         .text-content p { font-size:1.1em; margin-bottom:10px; line-height:1.7; }
         .text-content .emoji-large { font-size:2.5em; float:left; margin-right:15px; }
@@ -69,16 +68,22 @@
         .fill-blank-question,.quiz-question { margin-bottom:20px; padding:18px; background:var(--cream); border-radius:15px; border-left:5px solid var(--brown); }
         .fill-blank-question p { font-size:1.05em; margin-bottom:12px; line-height:1.7; }
         .quiz-question h4 { font-family:'Fredoka',sans-serif; color:var(--brown); font-size:1.05em; margin-bottom:12px; }
-        .fill-blank-question input { border:2px solid var(--light-gray); padding:8px 12px; border-radius:8px; font-size:1em; font-family:'Quicksand',sans-serif; width:180px; transition:all 0.3s ease; }
+        .fill-blank-question input { border:2px solid var(--light-gray); padding:10px 14px; border-radius:8px; font-size:1.05em; font-family:'Quicksand',sans-serif; width:200px; transition:all 0.3s ease; }
         .fill-blank-question input:focus { outline:none; border-color:var(--orange); box-shadow:0 0 8px rgba(255,140,66,0.3); }
         .fill-blank-question input.correct { border-color:var(--green); background:#D4EDDA; }
         .fill-blank-question input.incorrect { border-color:var(--red); background:#F8D7DA; }
-        .quiz-options { display:flex; flex-direction:column; gap:8px; }
-        .quiz-option { background:white; padding:12px 18px; border-radius:10px; border:2px solid var(--light-gray); cursor:pointer; transition:all 0.3s ease; font-size:0.95em; }
+        .fill-blank-question p { font-size:1.1em; margin-bottom:12px; line-height:1.9; }
+        .quiz-question h4 { font-family:'Fredoka',sans-serif; color:var(--brown); font-size:1.15em; margin-bottom:12px; }
+        .quiz-option { background:white; padding:14px 18px; border-radius:10px; border:2px solid var(--light-gray); cursor:pointer; transition:all 0.3s ease; font-size:1.05em; user-select:none; }
         .quiz-option:hover { background:#FFF8E7; border-color:var(--orange); transform:translateX(5px); }
         .quiz-option.selected { background:var(--orange); color:white; border-color:var(--orange); }
         .quiz-option.correct { background:var(--green); color:white; border-color:var(--green); }
         .quiz-option.incorrect { background:var(--red); color:white; border-color:var(--red); }
+        /* Hover-to-read highlight */
+        .speak-on-hover { cursor:pointer; border-radius:6px; transition:background 0.2s; }
+        .speak-on-hover:hover { background:rgba(255,140,66,0.15); outline:2px solid var(--orange); }
+        .speak-on-hover.speaking { background:rgba(46,204,113,0.18); outline:2px solid var(--green); }
+        .hover-tip { font-size:0.88em; color:var(--dark-brown); background:#FFF0D6; border:1px dashed var(--orange); padding:6px 14px; border-radius:10px; margin-bottom:14px; display:inline-block; }
         .score-display { background:linear-gradient(135deg,var(--brown) 0%,var(--dark-brown) 100%); color:white; padding:20px; border-radius:15px; text-align:center; font-family:'Fredoka',sans-serif; font-size:1.3em; margin-top:15px; display:none; }
         .footer { background:var(--brown); color:white; padding:25px; text-align:center; font-family:'Fredoka',sans-serif; }
         @media (max-width:768px) { .content { padding:25px 15px; } .header h1 { font-size:2em; } }
@@ -106,7 +111,7 @@
 <div id="unit1" class="unit-content active">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">🏢</span>
 <p>Structures are all around us! A structure is something that has been built to hold or support something. Think about your school building, bridges, houses, and playground equipment.</p>
@@ -132,7 +137,7 @@
 <p>People are finding better ways to build! We can use recycled materials, build green buildings that use less energy, protect animal habitats, and plant new trees.</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">🏫</div>
 <h3>Schools</h3>
 <p>Give students a place to learn. Building uses lots of materials. Solution: Use solar panels and natural light!</p>
@@ -158,7 +163,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems1">
 <div class="drag-item" draggable="true">Gives people homes</div>
@@ -188,7 +193,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. A <input type="text" id="unit1_blank1" class="blank-input"> is something that has been built to hold or support something.</p>
@@ -213,7 +218,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz1">
 <div class="quiz-question">
 <h4>1. Which is a positive effect of building structures?</h4>
@@ -270,14 +275,14 @@
 <div id="unit2" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">🐝</span>
 <p>Did you know that animals build structures too? Bees build hives, birds build nests, beavers build dams, and spiders build webs. These animal structures are just as important!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
 <div class="text-content">
-<span class="emoji-large">🦫</span>
+<span class="emoji-large">🐾</span>
 <p>Animal structures have different effects than human structures. When a beaver builds a dam, it creates a pond. This new pond can help some plants and animals.</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
@@ -296,8 +301,8 @@
 <p>We can learn from how animals build! Scientists study animal structures to find better ways for humans to build. This is called biomimicry.</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
-<div class="icon">🦫</div>
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
+<div class="icon">🦦</div>
 <h3>Beavers</h3>
 <p>Build dams and lodges from sticks and mud. Create wetlands that help many plants and animals. Can flood areas and change water flow.</p>
 <button class="read-aloud" onclick="readText(this.parentElement)">Read Aloud</button>
@@ -322,7 +327,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems2">
 <div class="drag-item" draggable="true">Beaver dam</div>
@@ -336,7 +341,7 @@
 </div>
 <div class="drop-zones">
 <div class="drop-zone" data-category="animal">
-<h4>🦫 Built by Animals</h4>
+<h4>🐾 Built by Animals</h4>
 <div class="dropped-items"></div>
 </div>
 <div class="drop-zone" data-category="human">
@@ -352,7 +357,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. Many animals are amazing builders! <input type="text" id="unit2_blank1" class="blank-input"> build dams from sticks and mud.</p>
@@ -377,7 +382,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz2">
 <div class="quiz-question">
 <h4>1. Which animal builds dams that create ponds?</h4>
@@ -434,7 +439,7 @@
 <div id="unit3" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">🏗️</span>
 <p>A structure is a supporting framework that holds a load and has a definite size, shape, and function. This means a structure supports weight, has a specific size and shape, and does a job!</p>
@@ -460,7 +465,7 @@
 <p>All structures hold a load. A load is the weight that a structure has to support. Your chair holds your body. A bridge holds cars and trucks. A tree holds its own branches and leaves!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">🏫</div>
 <h3>School Building</h3>
 <p>Size: Large, multi-room. Shape: Rectangular with rooms. Function: Provide space for learning. Load: Students, teachers, desks, books.</p>
@@ -486,7 +491,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems3">
 <div class="drag-item" draggable="true">Tree trunk</div>
@@ -516,7 +521,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. A structure is a supporting framework that holds a <input type="text" id="unit3_blank1" class="blank-input"> and has a definite size, shape, and function.</p>
@@ -541,7 +546,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz3">
 <div class="quiz-question">
 <h4>1. What is a structure?</h4>
@@ -597,7 +602,7 @@
 <div id="unit4" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">🎯</span>
 <p>Form and function means that the shape of a structure (its form) matches what it needs to do (its function). The way something looks should help it do its job better!</p>
@@ -623,7 +628,7 @@
 <p>Even in nature, form follows function! A giraffe has a very long neck (form) so it can reach leaves high up in trees (function). Nature is an expert at matching form and function!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">✏️</div>
 <h3>Pencil</h3>
 <p>Form: Long, thin cylinder with pointed end. Function: Write and draw. The pointed tip creates clear marks, and the long shape is easy to hold!</p>
@@ -649,7 +654,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems4">
 <div class="drag-item" draggable="true">Pointed tip</div>
@@ -667,13 +672,20 @@
 <div class="dropped-items"></div>
 </div>
 <div class="drop-zone" data-category="light">
-<h4>🦴 For Being Light</h4>
+<h4>🪶 For Being Light</h4>
 <div class="dropped-items"></div>
 </div>
 <div class="drop-zone" data-category="rain">
 <h4>☔ For Shedding Rain</h4>
 <div class="dropped-items"></div>
 </div>
+<div class="drop-zone" data-category="stable">
+<h4>🏛️ For Staying Stable</h4>
+<div class="dropped-items"></div>
+</div>
+<div class="drop-zone" data-category="protect">
+<h4>🛡️ For Protection</h4>
+<div class="dropped-items"></div>
 </div>
 <div>
 <button class="check-button" onclick="checkDragDrop(4)">Check</button>
@@ -683,7 +695,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. Form and <input type="text" id="unit4_blank1" class="blank-input"> means that the shape of a structure matches what it needs to do.</p>
@@ -708,7 +720,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz4">
 <div class="quiz-question">
 <h4>1. What does form and function mean?</h4>
@@ -765,7 +777,7 @@
 <div id="unit5" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">💪</span>
 <p>The strength of a structure is its ability to support a load without breaking or bending too much. A strong structure can hold a lot of weight!</p>
@@ -791,7 +803,7 @@
 <p>Adding supports and braces can make structures stronger. A table gets wobbly with only corner legs. Adding diagonal braces makes the table much stronger and prevents wobbling!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">🧱</div>
 <h3>Use Strong Materials</h3>
 <p>Steel, concrete, and thick wood can support heavy loads. Steel is stronger than plastic. Concrete is stronger than cardboard. Choosing the right material matters!</p>
@@ -817,7 +829,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems5">
 <div class="drag-item" draggable="true">Using steel instead of plastic</div>
@@ -845,7 +857,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. The <input type="text" id="unit5_blank1" class="blank-input"> of a structure is its ability to support a load without breaking.</p>
@@ -870,7 +882,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz5">
 <div class="quiz-question">
 <h4>1. What is the strength of a structure?</h4>
@@ -927,14 +939,14 @@
 <div id="unit6" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">⚖️</span>
 <p>The stability of a structure is its ability to keep its shape, maintain balance, float, or stay fixed when a force is applied. A stable structure doesn't tip over or wobble easily!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
 <div class="text-content">
-<span class="emoji-large">🎯</span>
+<span class="emoji-large">⬇️</span>
 <p>The center of gravity is important for stability. This is the point where all weight is balanced. If the center of gravity is low and centered, the structure is more stable!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
@@ -953,7 +965,7 @@
 <p>Some structures need to float to be stable. Boats are designed with hulls that displace water and keep them floating upright. The shape and weight distribution matter!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">📐</div>
 <h3>Widen the Base</h3>
 <p>A wider base provides more support and makes it harder to tip. Imagine pushing over a cone - it's easier upside down (narrow base) than right side up!</p>
@@ -979,7 +991,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems6">
 <div class="drag-item" draggable="true">Wide base</div>
@@ -991,7 +1003,7 @@
 <div class="drag-item" draggable="true">Weight evenly distributed</div>
 <div class="drag-item" draggable="true">All weight on one side</div>
 </div><div class="drop-zones"><div class="drop-zone" data-category="stable">
-<h4>⚖️ For Stability</h4>
+<h4>✅ Makes It Stable</h4>
 <div class="dropped-items"></div>
 </div>
 <div class="drop-zone" data-category="unstable">
@@ -1007,7 +1019,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. The <input type="text" id="unit6_blank1" class="blank-input"> of a structure is its ability to keep its shape, maintain balance, and not tip over.</p>
@@ -1032,7 +1044,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz6">
 <div class="quiz-question">
 <h4>1. What is stability?</h4>
@@ -1089,7 +1101,7 @@
 <div id="unit7" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">🧱</span>
 <p>When building structures, we need to think about the properties of materials. Properties are the special characteristics that materials have, like being hard, soft, flexible, or rigid.</p>
@@ -1115,7 +1127,7 @@
 <p>Materials react differently to temperature. Some materials expand when hot and contract when cold. Builders must consider how materials will behave in different weather!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">🧱</div>
 <h3>Concrete</h3>
 <p>Properties: Very strong, rigid, heavy, waterproof. Good for: Foundations, walls, roads. Not good for: Flexible items, lightweight structures.</p>
@@ -1141,7 +1153,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems7">
 <div class="drag-item" draggable="true">Very strong</div>
@@ -1169,7 +1181,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. When building structures, we need to think about the <input type="text" id="unit7_blank1" class="blank-input"> of materials.</p>
@@ -1194,7 +1206,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz7">
 <div class="quiz-question">
 <h4>1. What are properties of materials?</h4>
@@ -1251,9 +1263,9 @@
 <div id="unit8" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
-<span class="emoji-large">💨</span>
+<span class="emoji-large">⚡</span>
 <p>Forces are pushes and pulls that can affect structures. Different forces can change the shape, balance, or position of a structure. Understanding forces helps us build better!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
@@ -1273,11 +1285,11 @@
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
 <div class="text-content">
-<span class="emoji-large">🏋️</span>
+<span class="emoji-large">🔄</span>
 <p>Compression and tension are important forces. Compression squeezes and pushes materials together. Tension pulls and stretches materials apart. Different parts of structures experience different forces!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">⬇️</div>
 <h3>Gravity</h3>
 <p>Effect: Pulls structures downward. Example: A bridge must be strong enough to resist gravity pulling it down while holding cars. Solution: Strong materials and supports.</p>
@@ -1303,7 +1315,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems8">
 <div class="drag-item" draggable="true">Pulls everything down</div>
@@ -1339,7 +1351,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. <input type="text" id="unit8_blank1" class="blank-input"> are pushes and pulls that can affect structures.</p>
@@ -1364,7 +1376,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz8">
 <div class="quiz-question">
 <h4>1. What are forces?</h4>
@@ -1421,7 +1433,7 @@
 <div id="unit9" class="unit-content">
 <div class="content">
 <section class="section">
-<h2>What Are We Learning?</h2>
+<h2>📚 What Are We Learning?</h2>
 <div class="text-content">
 <span class="emoji-large">🔩</span>
 <p>Struts and ties are important parts of structures under load. They work together to make structures strong and stable. Understanding them helps us build better structures!</p>
@@ -1447,7 +1459,7 @@
 <p>Struts and ties are everywhere! Chair legs are struts. Suspension bridge cables are ties. Your skeleton has bones (struts) and muscles and tendons (ties) working together!</p>
 <button class="read-aloud" onclick="readText(this)">Read Aloud</button>
 </div>
-</section><section class="section"><h2>Examples</h2><div class="examples-grid"><div class="example-card">
+</section><section class="section"><h2>🔍 Examples</h2><div class="examples-grid"><div class="example-card">
 <div class="icon">🪑</div>
 <h3>Chair Legs (Struts)</h3>
 <p>Role: Support your weight by resisting compression. Effect: When you sit, the legs are pushed on and compressed. They must be rigid to not collapse.</p>
@@ -1473,7 +1485,7 @@
 </div>
 </div></section>
 <section class="section">
-<h2>Activity: Drag and Drop</h2>
+<h2>🖐️ Activity: Drag and Drop</h2>
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems9">
 <div class="drag-item" draggable="true">Chair legs</div>
@@ -1501,7 +1513,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Fill in the Blank</h2>
+<h2>✏️ Fill in the Blank</h2>
 <div class="fill-blank-container">
 <div class="fill-blank-question">
 <p>1. <input type="text" id="unit9_blank1" class="blank-input"> are parts that push or support by resisting compression.</p>
@@ -1526,7 +1538,7 @@
 </div>
 </section>
 <section class="section">
-<h2>Quiz Time!</h2>
+<h2>🧠 Quiz Time!</h2>
 <div class="quiz-container" id="quiz9">
 <div class="quiz-question">
 <h4>1. What is a strut?</h4>
@@ -1642,11 +1654,12 @@
             if (currentSpeech) {
                 window.speechSynthesis.cancel();
                 document.querySelectorAll('.read-aloud').forEach(btn => btn.classList.remove('playing'));
+                document.querySelectorAll('.speak-on-hover').forEach(el => el.classList.remove('speaking'));
             }
 
             if (!button.classList.contains('playing')) {
                 const speech = new SpeechSynthesisUtterance(textToRead);
-                speech.rate = 0.9;
+                speech.rate = 0.85;
                 speech.pitch = 1;
                 speech.volume = 1;
                 speech.onstart = () => button.classList.add('playing');
@@ -1656,7 +1669,53 @@
             }
         }
 
+        // Hover-to-read for question text
+        let hoverSpeechTimeout = null;
+
+        function speakElement(el) {
+            if (currentSpeech) {
+                window.speechSynthesis.cancel();
+                document.querySelectorAll('.read-aloud').forEach(b => b.classList.remove('playing'));
+                document.querySelectorAll('.speak-on-hover').forEach(e => e.classList.remove('speaking'));
+                currentSpeech = null;
+            }
+            const clone = el.cloneNode(true);
+            clone.querySelectorAll('button,input').forEach(n => n.remove());
+            const text = clone.textContent.trim();
+            if (!text) return;
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.rate = 0.85;
+            speech.pitch = 1;
+            speech.volume = 1;
+            el.classList.add('speaking');
+            speech.onend = () => { el.classList.remove('speaking'); currentSpeech = null; };
+            speech.onerror = () => { el.classList.remove('speaking'); currentSpeech = null; };
+            currentSpeech = speech;
+            window.speechSynthesis.speak(speech);
+        }
+
+        function initHoverRead() {
+            // Add hover tip to all quiz and fill-blank sections
+            document.querySelectorAll('.quiz-container, .fill-blank-container').forEach(container => {
+                const tip = document.createElement('p');
+                tip.className = 'hover-tip';
+                tip.textContent = '🔊 Hover over any question or answer to hear it read aloud!';
+                container.insertBefore(tip, container.firstChild);
+            });
+
+            document.querySelectorAll('.quiz-question h4, .quiz-option, .fill-blank-question p, .drop-zone h4, .drag-item').forEach(el => {
+                el.classList.add('speak-on-hover');
+                el.addEventListener('mouseenter', () => {
+                    hoverSpeechTimeout = setTimeout(() => speakElement(el), 600);
+                });
+                el.addEventListener('mouseleave', () => {
+                    clearTimeout(hoverSpeechTimeout);
+                });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            initHoverRead();
             const dragItems = document.querySelectorAll('.drag-item');
             const dropZones = document.querySelectorAll('.drop-zone');
 
@@ -1706,7 +1765,9 @@
                 });
             });
 
-            const allPlaced = document.querySelectorAll(`#unit${unitNum} .drop-zone .drag-item`).length === document.querySelectorAll(`#dragItems${unitNum} .drag-item`).length + document.querySelectorAll(`#unit${unitNum} .drop-zone .drag-item`).length - document.querySelectorAll(`#dragItems${unitNum} .drag-item`).length;
+            const totalDragItems = document.querySelectorAll(`#unit${unitNum} .drag-item`).length;
+            const placedItems = document.querySelectorAll(`#unit${unitNum} .drop-zone .drag-item`).length;
+            const allPlaced = placedItems === totalDragItems;
 
             if (!allPlaced) {
                 feedback.className = 'feedback incorrect';
