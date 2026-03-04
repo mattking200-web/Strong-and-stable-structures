@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 3 Science: Soils in the Environment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --soil-brown: #8B4513;
+            --light-brown: #D2691E;
+            --soil-dark: #5C3317;
+            --grass-green: #7CB342;
+            --sky-blue: #87CEEB;
+            --orange: #FF8C42;
+            --warm-beige: #F5E6D3;
+            --shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(to bottom, var(--sky-blue) 0%, var(--warm-beige) 40%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative ground layer */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to bottom, 
+                var(--soil-brown) 0%, 
+                var(--soil-brown) 40%,
+                var(--soil-dark) 100%);
+            z-index: -1;
+            border-top: 8px solid var(--grass-green);
+        }
+
+        /* Grass decoration */
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 150px;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                var(--grass-green) 10px,
+                var(--grass-green) 12px
+            );
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 40px var(--shadow);
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--light-brown) 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '🌱';
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.2;
+            top: -20px;
+            right: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5em;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .unit-number {
+            background: var(--soil-dark);
+            color: var(--orange);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* Content sections */
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--warm-beige);
+            border-radius: 20px;
+            border: 4px solid var(--light-brown);
+        }
+
+        h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--soil-dark);
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .content-block {
+            background: white;
+            padding: 25px;
+            padding-top: 60px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 6px solid var(--orange);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .read-aloud {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .read-aloud:hover {
+            background: var(--light-brown);
+            transform: scale(1.05);
+        }
+
+        .read-aloud:active {
+            transform: scale(0.95);
+        }
+
+        .content-block p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .content-block strong {
+            color: var(--soil-dark);
+            font-weight: bold;
+        }
+
+        .example-box {
+            background: #FFF8DC;
+            border: 3px dashed var(--grass-green);
+            padding: 20px;
+            padding-top: 55px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .example-box h3 {
+            color: var(--grass-green);
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .example-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .example-list li {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 10px;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+        }
+
+        .example-list li::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            font-size: 1.3em;
+        }
+
+        .example-list li:nth-child(1)::before { content: '🌾'; }
+        .example-list li:nth-child(2)::before { content: '🏡'; }
+        .example-list li:nth-child(3)::before { content: '💧'; }
+        .example-list li:nth-child(4)::before { content: '🐛'; }
+        .example-list li:nth-child(5)::before { content: '🌳'; }
+
+        /* Drag and Drop Activity */
+        .drag-drop-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .drag-items {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 300px;
+        }
+
+        .drag-items h3 {
+            color: var(--soil-dark);
+            margin-bottom: 15px;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .draggable-item {
+            background: linear-gradient(135deg, var(--orange), var(--light-brown));
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            cursor: move;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .draggable-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .draggable-item.dragging {
+            opacity: 0.5;
+        }
+
+        .drop-zones {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .drop-zone {
+            background: #E8F5E9;
+            border: 3px dashed var(--grass-green);
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .drop-zone.drag-over {
+            background: #C8E6C9;
+            border-color: var(--soil-dark);
+            transform: scale(1.02);
+        }
+
+        .drop-zone-label {
+            font-weight: bold;
+            color: var(--grass-green);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .check-button {
+            background: var(--grass-green);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .check-button:hover {
+            background: #689F38;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #C8E6C9;
+            color: #2E7D32;
+            border: 3px solid #4CAF50;
+        }
+
+        .feedback.incorrect {
+            background: #FFCDD2;
+            color: #C62828;
+            border: 3px solid #F44336;
+        }
+
+        /* Fill in the Blank */
+        .fill-blank-question {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            border-left: 5px solid var(--orange);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .fill-blank-question p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .blank-input {
+            background: #FFF8DC;
+            border: 2px solid var(--light-brown);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-family: 'Comic Neue', cursive;
+            min-width: 150px;
+            transition: all 0.3s;
+        }
+
+        .blank-input:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.2);
+        }
+
+        .blank-input.correct {
+            background: #C8E6C9;
+            border-color: #4CAF50;
+        }
+
+        .blank-input.incorrect {
+            background: #FFCDD2;
+            border-color: #F44336;
+        }
+
+        /* Quiz Questions */
+        .quiz-question {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border: 3px solid var(--light-brown);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-question h4 {
+            color: var(--soil-dark);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: var(--warm-beige);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1em;
+        }
+
+        .quiz-option:hover {
+            background: #FFE4B5;
+            border-color: var(--orange);
+        }
+
+        .quiz-option.selected {
+            background: var(--orange);
+            color: white;
+            border-color: var(--soil-dark);
+        }
+
+        .quiz-option.correct {
+            background: #C8E6C9;
+            border-color: #4CAF50;
+            color: #2E7D32;
+        }
+
+        .quiz-option.incorrect {
+            background: #FFCDD2;
+            border-color: #F44336;
+            color: #C62828;
+        }
+
+        /* Score display */
+        .score-display {
+            background: linear-gradient(135deg, var(--grass-green), #558B2F);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+
+        /* Progress indicator */
+        .progress-bar {
+            background: #E0E0E0;
+            height: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--grass-green), var(--orange));
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+    
+        /* Main Header */
+        .main-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--soil-dark) 0%, var(--soil-brown) 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-header::before {
+            content: '🌍';
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            top: -20px;
+            right: 30px;
+        }
+
+        .main-header h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3em;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .main-header p {
+            color: var(--warm-beige);
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+
+        /* Unit Navigation */
+        .unit-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .unit-button {
+            background: linear-gradient(135deg, var(--orange), var(--light-brown));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .unit-button::after {
+            content: attr(data-emoji);
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .unit-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .unit-button.active {
+            background: linear-gradient(135deg, var(--grass-green), #558B2F);
+        }
+
+        .unit-number {
+            display: block;
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .unit-content {
+            display: none;
+        }
+
+        .unit-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-to-menu {
+            background: var(--soil-dark);
+            color: var(--orange);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .back-to-menu:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .drag-drop-area {
+                grid-template-columns: 1fr;
+            }
+            .unit-nav {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hover-to-read */
+        .speak-on-hover {
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s, outline 0.2s;
+        }
+        .speak-on-hover:hover {
+            background: rgba(139, 69, 19, 0.10);
+            outline: 2px solid var(--light-brown);
+        }
+        .speak-on-hover.speaking {
+            background: rgba(124, 179, 66, 0.18);
+            outline: 2px solid var(--grass-green);
+        }
+        .hover-tip {
+            font-size: 0.9em;
+            color: var(--soil-dark);
+            background: #FFF8DC;
+            border: 1px dashed var(--light-brown);
+            padding: 8px 14px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-header">
+            <h1>🌱 Soils in the Environment 🌱</h1>
+            <p>Grade 3 Science - Ontario Curriculum</p>
+        </div>
+
+        <!-- Unit Navigation Menu -->
+        <div id="unitMenu" class="unit-nav">
+            <button class="unit-button" data-emoji="🌍" onclick="showUnit(1)">
+                <span class="unit-number">E1.1</span>
+                Why Soil is Important
+            </button>
+            <button class="unit-button" data-emoji="♻️" onclick="showUnit(2)">
+                <span class="unit-number">E1.2</span>
+                How Humans Affect Soil
+            </button>
+            <button class="unit-button" data-emoji="🔬" onclick="showUnit(3)">
+                <span class="unit-number">E2.1</span>
+                What's Inside Soil?
+            </button>
+            <button class="unit-button" data-emoji="💧" onclick="showUnit(4)">
+                <span class="unit-number">E2.2</span>
+                What Goes Into Soil?
+            </button>
+            <button class="unit-button" data-emoji="🌾" onclick="showUnit(5)">
+                <span class="unit-number">E2.3</span>
+                Ontario Soils & Crops
+            </button>
+            <button class="unit-button" data-emoji="💨" onclick="showUnit(6)">
+                <span class="unit-number">E2.4</span>
+                Erosion & Its Effects
+            </button>
+            <button class="unit-button" data-emoji="🌱" onclick="showUnit(7)">
+                <span class="unit-number">E2.5</span>
+                Keeping Soil Healthy
+            </button>
+            <button class="unit-button" data-emoji="♻️" onclick="showUnit(8)">
+                <span class="unit-number">E2.6</span>
+                Composting
+            </button>
+        </div>
+
+
+        <!-- Unit 1 -->
+        <div id="unit1" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+            <div class="unit-number">Unit 1: E1.1</div>
+            <h1>Why Soil is Important for Our World</h1>
+        </header>
+            
+
+        <div class="section">
+            <h2>🌍 What is Soil and Why Do We Need It?</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Soil</strong> is the top layer of the Earth where plants grow. It might look like just dirt, but soil is actually one of the most important things on our planet! Without healthy soil, we wouldn't have food to eat, clean air to breathe, or beautiful plants and trees around us.</p>
+                <p>Soil is made up of tiny pieces of rock, dead plants and animals, water, air, and millions of living creatures that are too small to see. All of these parts work together to make soil a special home for plants and animals.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Society</strong> means all the people living together in communities, towns, and cities. Soil is super important for society because it helps us grow the <strong>food</strong> we eat every day. Farmers use soil to grow vegetables like carrots and tomatoes, grains like wheat for bread, and fruits like apples and strawberries.</p>
+                <p>Soil also gives us a place to build our homes, schools, and parks. Many things we use come from soil, like cotton for our clothes and wood from trees that grow in soil.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>The <strong>environment</strong> means all the natural things around us including plants, animals, air, water, and land. Soil is extremely important for the environment because it helps plants grow, and plants give us <strong>oxygen</strong> to breathe. Plants also provide homes and food for animals like birds, rabbits, and insects.</p>
+                <p>Healthy soil acts like a big sponge that soaks up rainwater. This helps prevent <strong>flooding</strong> and keeps our water clean by filtering out dirt and harmful things before the water goes into rivers and lakes.</p>
+            </div>
+
+            <div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <h3>🌟 5 Important Ways Soil Helps Us:</h3>
+                <ul class="example-list">
+                    <li><strong>Growing Food:</strong> All our fruits, vegetables, and grains grow in soil</li>
+                    <li><strong>Building Homes:</strong> We build houses, schools, and playgrounds on soil</li>
+                    <li><strong>Cleaning Water:</strong> Soil filters rainwater to make it clean</li>
+                    <li><strong>Home for Animals:</strong> Worms, beetles, and other creatures live in soil</li>
+                    <li><strong>Growing Trees:</strong> Trees grow in soil and give us oxygen to breathe</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Drag and Drop Activity</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Match each benefit of soil to the correct category: Society or Environment!</p>
+            
+            <div class="drag-drop-area">
+                <div class="drag-items">
+                    <h3>Drag these items:</h3>
+                    <div class="draggable-item" draggable="true" data-category="society" data-unit="1">Grows food for people</div>
+                    <div class="draggable-item" draggable="true" data-category="environment" data-unit="1">Provides oxygen through plants</div>
+                    <div class="draggable-item" draggable="true" data-category="society" data-unit="1">Place to build homes</div>
+                    <div class="draggable-item" draggable="true" data-category="environment" data-unit="1">Home for worms and insects</div>
+                    <div class="draggable-item" draggable="true" data-category="environment" data-unit="1">Filters and cleans water</div>
+                    <div class="draggable-item" draggable="true" data-category="society" data-unit="1">Grows cotton for clothes</div>
+                </div>
+                
+                <div class="drop-zones">
+                    <div class="drop-zone" data-category="society" data-unit="1">
+                        <div class="drop-zone-label">👥 For Society (People)</div>
+                    </div>
+                    <div class="drop-zone" data-category="environment" data-unit="1">
+                        <div class="drop-zone-label">🌍 For Environment (Nature)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="check-button" onclick="checkDragDrop(1)">Check My Answers!</button>
+            <div class="feedback" id="dragDropFeedback1"></div>
+        </div>
+
+        <div class="section">
+            <h2>✏️ Fill in the Blanks</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words. The answers are in the text above!</p>
+            
+            <div class="fill-blank-question">
+                <p>1. <strong>Soil</strong> is the top layer of the Earth where <input type="text" class="blank-input" data-answer="plants" placeholder="______" data-unit="1"> grow.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>2. Farmers use soil to grow vegetables, grains, and <input type="text" class="blank-input" data-answer="fruits" placeholder="______" data-unit="1"> that we eat.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>3. Healthy soil acts like a big <input type="text" class="blank-input" data-answer="sponge" placeholder="______" data-unit="1"> that soaks up rainwater.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>4. Plants that grow in soil give us <input type="text" class="blank-input" data-answer="oxygen" placeholder="______" data-unit="1"> to breathe.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>5. Soil provides homes and food for animals like worms, beetles, and <input type="text" class="blank-input" data-answer="insects" placeholder="______" data-unit="1">.</p>
+            </div>
+
+            <button class="check-button" onclick="checkFillBlanks(1)">Check My Answers!</button>
+            <div class="feedback" id="fillBlankFeedback1"></div>
+        </div>
+
+        <div class="section">
+            <h2>📝 Quiz Time!</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+
+            <div class="quiz-question" data-unit="1">
+                <h4>1. What does "society" mean?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Only farmers and gardeners</div>
+                    <div class="quiz-option" data-correct="true">All people living together in communities</div>
+                    <div class="quiz-option" data-correct="false">Just animals and plants</div>
+                    <div class="quiz-option" data-correct="false">The ground beneath our feet</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="1">
+                <h4>2. Why is soil important for growing food?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">It makes food taste better</div>
+                    <div class="quiz-option" data-correct="true">Plants need soil to grow and we eat those plants</div>
+                    <div class="quiz-option" data-correct="false">Food grows better in water</div>
+                    <div class="quiz-option" data-correct="false">Soil is not important for food</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="1">
+                <h4>3. How does soil help the environment?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">It only helps people</div>
+                    <div class="quiz-option" data-correct="false">It makes the weather warmer</div>
+                    <div class="quiz-option" data-correct="true">It helps plants grow which give us oxygen</div>
+                    <div class="quiz-option" data-correct="false">It doesn't help the environment</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="1">
+                <h4>4. What does soil do with rainwater?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">It pushes all water away</div>
+                    <div class="quiz-option" data-correct="true">It soaks it up like a sponge and filters it</div>
+                    <div class="quiz-option" data-correct="false">It turns water into air</div>
+                    <div class="quiz-option" data-correct="false">It makes water dirty</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="1">
+                <h4>5. Which of these creatures live in soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Fish and dolphins</div>
+                    <div class="quiz-option" data-correct="true">Worms and beetles</div>
+                    <div class="quiz-option" data-correct="false">Birds and butterflies</div>
+                    <div class="quiz-option" data-correct="false">Sharks and whales</div>
+                </div>
+            </div>
+
+            <button class="check-button" onclick="checkQuiz(1)">Check My Answers!</button>
+            <div class="score-display" id="quizScore1"></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill1"></div>
+        </div>
+    </div>
+
+    
+        </div>
+
+        <!-- Unit 2 -->
+        <div id="unit2" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+            <div class="unit-number">Unit 2: E1.2</div>
+            <h1>How Humans Affect Soil</h1>
+        </header>
+            
+
+        <div class="section">
+            <h2>🌍 Human Activities That Harm Soil</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>People use soil every day, but sometimes our activities can <strong>harm</strong> the soil. When we harm soil, it becomes less healthy and cannot grow plants as well. It's important to understand how we affect soil so we can make better choices.</p>
+                <p>One way humans harm soil is through <strong>pollution</strong>. When we throw garbage on the ground or spill chemicals, these harmful things can get into the soil. Pollution makes the soil dirty and unsafe for plants and animals.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>Another problem is <strong>construction</strong>. When people build roads, buildings, and parking lots, they cover the soil with concrete and asphalt. This means plants cannot grow there anymore, and rain cannot soak into the ground. The soil under these hard surfaces becomes dry and lifeless.</p>
+                <p><strong>Farming</strong> can also harm soil if not done carefully. When farmers grow the same crop over and over in the same place, it uses up all the nutrients in the soil. The soil becomes tired and weak, like when you feel tired after running for a long time.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>Cutting down too many <strong>trees</strong> is harmful to soil too. Trees have roots that hold the soil in place. When we remove trees, wind and rain can blow or wash the soil away. This is especially bad because it can take hundreds of years for new soil to form!</p>
+                <p>Using too many <strong>chemicals</strong> like fertilizers and pesticides can hurt the soil. While some chemicals help plants grow, using too much can kill the helpful bugs and worms that live in the soil and keep it healthy.</p>
+            </div>
+
+            <div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <h3>❌ 5 Ways Humans Can Harm Soil:</h3>
+                <ul class="example-list">
+                    <li><strong>Littering:</strong> Throwing trash and garbage on the ground pollutes soil</li>
+                    <li><strong>Building:</strong> Covering soil with concrete stops plants from growing</li>
+                    <li><strong>Poor Farming:</strong> Growing the same crop uses up soil nutrients</li>
+                    <li><strong>Cutting Trees:</strong> Removing trees lets wind and rain wash soil away</li>
+                    <li><strong>Too Many Chemicals:</strong> Overusing pesticides kills helpful soil creatures</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌍 How Humans Can Help Soil</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>The good news is that people can do many things to <strong>improve</strong> soil quality and <strong>prevent</strong> harm! We can be soil heroes by making smart choices that help keep soil healthy.</p>
+                <p>One important way to help is by <strong>composting</strong>. Composting means taking food scraps like apple cores and banana peels and letting them break down to make rich, healthy soil. This adds nutrients back to the soil naturally, without chemicals.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Planting trees and plants</strong> helps soil stay in place. The roots hold the soil like fingers gripping tightly. Plants also add organic matter to soil when their leaves fall and decompose. This makes the soil healthier and richer.</p>
+                <p>Farmers can practice <strong>crop rotation</strong>, which means growing different crops in the same field each year. This helps keep the soil full of different nutrients. It's like eating a variety of foods to stay healthy instead of eating the same thing every day!</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>We can <strong>reduce pollution</strong> by not littering and disposing of chemicals properly. Never pour paint, oil, or other harmful liquids on the ground. Always put trash in garbage cans and recycle when possible.</p>
+                <p>Creating <strong>gardens and green spaces</strong> in cities helps too. Even small gardens provide healthy soil for plants and animals. Communities can work together to plant gardens in parks, schools, and neighborhoods.</p>
+            </div>
+
+            <div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <h3>✅ 5 Ways Humans Can Help Soil:</h3>
+                <ul class="example-list">
+                    <li><strong>Composting:</strong> Turn food scraps into rich, healthy soil</li>
+                    <li><strong>Planting:</strong> Add trees and plants to hold soil in place</li>
+                    <li><strong>Crop Rotation:</strong> Grow different crops to keep soil nutrients balanced</li>
+                    <li><strong>Not Littering:</strong> Keep trash and chemicals out of the soil</li>
+                    <li><strong>Making Gardens:</strong> Create green spaces where soil can stay healthy</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Drag and Drop Activity</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Sort these actions into "Harms Soil" or "Helps Soil"!</p>
+            
+            <div class="drag-drop-area">
+                <div class="drag-items">
+                    <h3>Drag these items:</h3>
+                    <div class="draggable-item" draggable="true" data-category="harms" data-unit="2">Throwing garbage on ground</div>
+                    <div class="draggable-item" draggable="true" data-category="helps" data-unit="2">Composting food scraps</div>
+                    <div class="draggable-item" draggable="true" data-category="harms" data-unit="2">Covering soil with concrete</div>
+                    <div class="draggable-item" draggable="true" data-category="helps" data-unit="2">Planting trees</div>
+                    <div class="draggable-item" draggable="true" data-category="helps" data-unit="2">Rotating crops</div>
+                    <div class="draggable-item" draggable="true" data-category="harms" data-unit="2">Using too many chemicals</div>
+                </div>
+                
+                <div class="drop-zones">
+                    <div class="drop-zone" data-category="harms" data-unit="2">
+                        <div class="drop-zone-label">❌ Harms Soil</div>
+                    </div>
+                    <div class="drop-zone" data-category="helps" data-unit="2">
+                        <div class="drop-zone-label">✅ Helps Soil</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="check-button" onclick="checkDragDrop(2)">Check My Answers!</button>
+            <div class="feedback" id="dragDropFeedback2"></div>
+        </div>
+
+        <div class="section">
+            <h2>✏️ Fill in the Blanks</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words!</p>
+            
+            <div class="fill-blank-question">
+                <p>1. When we throw garbage on the ground, it causes <input type="text" class="blank-input" data-answer="pollution" placeholder="______" data-unit="2"> in the soil.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>2. Trees have <input type="text" class="blank-input" data-answer="roots" placeholder="______" data-unit="2"> that hold the soil in place.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>3. <input type="text" class="blank-input" data-answer="Composting" placeholder="______" data-unit="2"> means turning food scraps into rich, healthy soil.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>4. When farmers grow different crops each year, it's called crop <input type="text" class="blank-input" data-answer="rotation" placeholder="______" data-unit="2">.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>5. Building roads and parking lots covers soil with <input type="text" class="blank-input" data-answer="concrete" placeholder="______" data-unit="2"> and asphalt.</p>
+            </div>
+
+            <button class="check-button" onclick="checkFillBlanks(2)">Check My Answers!</button>
+            <div class="feedback" id="fillBlankFeedback2"></div>
+        </div>
+
+        <div class="section">
+            <h2>📝 Quiz Time!</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+
+            <div class="quiz-question" data-unit="2">
+                <h4>1. What happens when we cover soil with concrete?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">It makes soil healthier</div>
+                    <div class="quiz-option" data-correct="true">Plants cannot grow and rain cannot soak in</div>
+                    <div class="quiz-option" data-correct="false">It helps trees grow bigger</div>
+                    <div class="quiz-option" data-correct="false">It adds nutrients to soil</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="2">
+                <h4>2. Why is composting good for soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">It makes soil dry</div>
+                    <div class="quiz-option" data-correct="true">It adds nutrients to soil naturally</div>
+                    <div class="quiz-option" data-correct="false">It removes all the bugs</div>
+                    <div class="quiz-option" data-correct="false">It covers the soil</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="2">
+                <h4>3. What is crop rotation?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Growing the same crop forever</div>
+                    <div class="quiz-option" data-correct="false">Spinning crops in circles</div>
+                    <div class="quiz-option" data-correct="true">Growing different crops each year</div>
+                    <div class="quiz-option" data-correct="false">Not growing any crops</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="2">
+                <h4>4. Why do tree roots help soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">They make soil disappear</div>
+                    <div class="quiz-option" data-correct="true">They hold soil in place and stop it from washing away</div>
+                    <div class="quiz-option" data-correct="false">They remove all water from soil</div>
+                    <div class="quiz-option" data-correct="false">They make soil hard like rock</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="2">
+                <h4>5. What should we NOT do to help soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Plant trees and gardens</div>
+                    <div class="quiz-option" data-correct="false">Compost food scraps</div>
+                    <div class="quiz-option" data-correct="true">Pour chemicals and trash on the ground</div>
+                    <div class="quiz-option" data-correct="false">Practice crop rotation</div>
+                </div>
+            </div>
+
+            <button class="check-button" onclick="checkQuiz(2)">Check My Answers!</button>
+            <div class="score-display" id="quizScore2"></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill2"></div>
+        </div>
+    </div>
+
+    
+        </div>
+
+        <!-- Unit 3 -->
+        <div id="unit3" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+            <div class="unit-number">Unit 3: E2.1</div>
+            <h1>What's Inside Soil?</h1>
+        </header>
+            
+
+        <div class="section">
+            <h2>🌍 Living Components of Soil</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>Soil is full of life! <strong>Living components</strong> are all the things in soil that are alive or were once alive. Even though you can't see most of them without a microscope, millions of tiny living things are working hard in the soil right now!</p>
+                <p>The most important living things in soil are <strong>microorganisms</strong>. These are super tiny creatures like bacteria and fungi that are too small to see with just your eyes. They break down dead plants and animals, turning them into nutrients that help new plants grow.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Earthworms</strong> are amazing soil helpers that you can actually see! They tunnel through the soil, which helps air and water get to plant roots. When earthworms eat soil and dead leaves, they make it into rich fertilizer called <strong>castings</strong> that plants love.</p>
+                <p>Other living things in soil include <strong>insects</strong> like beetles and ants, tiny <strong>spiders</strong>, and even small animals like moles. All of these creatures help mix the soil and break down dead material. Dead plant parts like fallen leaves and roots are also part of soil's living components because they were once alive.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌍 Non-Living Components of Soil</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Non-living components</strong> are things in soil that have never been alive. These are just as important as the living parts! The biggest non-living component is tiny pieces of <strong>rock</strong> and minerals. Over thousands of years, big rocks break down into smaller and smaller pieces that become part of the soil.</p>
+                <p>Different types of rock make different types of soil. <strong>Sand</strong> is made of larger rock pieces that you can see and feel. <strong>Silt</strong> is made of medium-sized pieces that feel smooth and silky. <strong>Clay</strong> is made of the tiniest rock pieces that stick together and feel smooth when wet.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Water</strong> is a very important non-living component. Plants need water from the soil to grow. Water also helps nutrients move through the soil so plant roots can absorb them. Without water, soil would be dry and dusty, and nothing could grow!</p>
+                <p><strong>Air</strong> is in soil too, even though you can't see it. There are tiny spaces between the soil particles where air lives. Plant roots need this air to breathe, just like you need air to breathe! The air in soil also helps microorganisms stay alive.</p>
+            </div>
+
+            <div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <h3>🔍 What's in Soil:</h3>
+                <ul class="example-list">
+                    <li><strong>Living:</strong> Worms, insects, bacteria, fungi, dead plant parts</li>
+                    <li><strong>Non-Living:</strong> Rock pieces (sand, silt, clay), minerals</li>
+                    <li><strong>Water:</strong> Helps plants grow and nutrients move</li>
+                    <li><strong>Organic Matter:</strong> Dead leaves and plant material</li>
+                    <li><strong>Air:</strong> Fills spaces between soil particles</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌍 Characteristics of Healthy Soil</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Healthy soil</strong> has the right mix of all components working together. You can tell soil is healthy by looking at it and touching it. Healthy soil is usually <strong>dark brown</strong> or black in color because it has lots of organic matter (dead plant material).</p>
+                <p>Healthy soil feels <strong>crumbly</strong> when you squeeze it - not too wet and sticky, and not too dry and dusty. It should be able to hold water like a sponge but also let extra water drain away so roots don't get too soggy.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>Healthy soil has lots of <strong>living creatures</strong> in it. If you dig in healthy soil, you should see earthworms, beetles, and other bugs. These creatures show that the soil is full of life and has the nutrients and air they need to survive.</p>
+                <p>Healthy soil also has a good <strong>structure</strong>, which means the particles stick together in small clumps with spaces in between. These spaces let water and air move through the soil easily. When soil has good structure, plant roots can grow strong and deep to find the water and nutrients they need.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Drag and Drop Activity</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Sort these soil components into Living or Non-Living!</p>
+            
+            <div class="drag-drop-area">
+                <div class="drag-items">
+                    <h3>Drag these items:</h3>
+                    <div class="draggable-item" draggable="true" data-category="living" data-unit="3">Earthworms</div>
+                    <div class="draggable-item" draggable="true" data-category="nonliving" data-unit="3">Water</div>
+                    <div class="draggable-item" draggable="true" data-category="living" data-unit="3">Bacteria</div>
+                    <div class="draggable-item" draggable="true" data-category="nonliving" data-unit="3">Rock pieces</div>
+                    <div class="draggable-item" draggable="true" data-category="living" data-unit="3">Dead leaves</div>
+                    <div class="draggable-item" draggable="true" data-category="nonliving" data-unit="3">Air</div>
+                </div>
+                
+                <div class="drop-zones">
+                    <div class="drop-zone" data-category="living" data-unit="3">
+                        <div class="drop-zone-label">🪱 Living Components</div>
+                    </div>
+                    <div class="drop-zone" data-category="nonliving" data-unit="3">
+                        <div class="drop-zone-label">🪨 Non-Living Components</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="check-button" onclick="checkDragDrop(3)">Check My Answers!</button>
+            <div class="feedback" id="dragDropFeedback3"></div>
+        </div>
+
+        <div class="section">
+            <h2>✏️ Fill in the Blanks</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words!</p>
+            
+            <div class="fill-blank-question">
+                <p>1. <input type="text" class="blank-input" data-answer="Microorganisms" placeholder="______" data-unit="3"> are tiny living things in soil like bacteria and fungi.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>2. Earthworms make rich fertilizer called <input type="text" class="blank-input" data-answer="castings" placeholder="______" data-unit="3"> that plants love.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>3. The three types of rock pieces in soil are sand, silt, and <input type="text" class="blank-input" data-answer="clay" placeholder="______" data-unit="3">.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>4. Healthy soil is usually <input type="text" class="blank-input" data-answer="dark" placeholder="______" data-unit="3"> brown or black in color.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>5. Plant roots need the <input type="text" class="blank-input" data-answer="air" placeholder="______" data-unit="3"> that is in the spaces between soil particles.</p>
+            </div>
+
+            <button class="check-button" onclick="checkFillBlanks(3)">Check My Answers!</button>
+            <div class="feedback" id="fillBlankFeedback3"></div>
+        </div>
+
+        <div class="section">
+            <h2>📝 Quiz Time!</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+
+            <div class="quiz-question" data-unit="3">
+                <h4>1. Which of these is a living component of soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Water</div>
+                    <div class="quiz-option" data-correct="true">Earthworms</div>
+                    <div class="quiz-option" data-correct="false">Rock pieces</div>
+                    <div class="quiz-option" data-correct="false">Air</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="3">
+                <h4>2. What do earthworms do to help soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">They make soil hard</div>
+                    <div class="quiz-option" data-correct="true">They tunnel through soil and make fertilizer</div>
+                    <div class="quiz-option" data-correct="false">They remove all the water</div>
+                    <div class="quiz-option" data-correct="false">They eat all the plants</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="3">
+                <h4>3. What color is healthy soil usually?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Bright white</div>
+                    <div class="quiz-option" data-correct="false">Bright blue</div>
+                    <div class="quiz-option" data-correct="true">Dark brown or black</div>
+                    <div class="quiz-option" data-correct="false">Bright yellow</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="3">
+                <h4>4. Why is air important in soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="true">Plant roots and microorganisms need it to breathe</div>
+                    <div class="quiz-option" data-correct="false">It makes soil heavy</div>
+                    <div class="quiz-option" data-correct="false">It turns soil into water</div>
+                    <div class="quiz-option" data-correct="false">Air is not in soil</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="3">
+                <h4>5. What are the tiniest rock pieces in soil called?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Sand</div>
+                    <div class="quiz-option" data-correct="false">Silt</div>
+                    <div class="quiz-option" data-correct="true">Clay</div>
+                    <div class="quiz-option" data-correct="false">Gravel</div>
+                </div>
+            </div>
+
+            <button class="check-button" onclick="checkQuiz(3)">Check My Answers!</button>
+            <div class="score-display" id="quizScore3"></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill3"></div>
+        </div>
+    </div>
+
+    
+        </div>
+
+        <!-- Unit 4 -->
+        <div id="unit4" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+            <div class="unit-number">Unit 4: E2.2</div>
+            <h1>What Goes Into Soil?</h1>
+        </header>
+            
+
+        <div class="section">
+            <h2>🌍 Substances Added to Soil</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>Many different <strong>substances</strong> get added to soil, both on purpose and by accident. A substance is just another word for a material or something that can be added to soil. Some substances help the soil, while others can harm it.</p>
+                <p><strong>Fertilizer</strong> is a common substance that farmers and gardeners add to soil on purpose. Fertilizers contain nutrients like nitrogen, phosphorus, and potassium that help plants grow big and strong. It's like giving vitamins to the soil! Natural fertilizers come from things like cow manure and compost.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Pesticides</strong> are chemicals that farmers sometimes add to kill bugs that eat crops. While pesticides can protect plants, using too many can hurt the helpful creatures in soil like earthworms and bacteria. It's important to use pesticides carefully!</p>
+                <p><strong>Water</strong> is constantly being absorbed by soil when it rains or when people water their gardens. Clean rainwater is good for soil, but water can also carry other substances into the soil. If water flows through polluted areas, it can bring harmful chemicals into the soil.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Organic matter</strong> like dead leaves, grass clippings, and food scraps naturally get added to soil. When these materials decompose (break down), they make the soil richer and healthier. This is one of the best things that can be added to soil!</p>
+                <p>Unfortunately, <strong>pollution</strong> can add harmful substances to soil. Things like oil, chemicals from factories, and litter can accidentally get into soil and make it unhealthy. Even salt from winter roads can wash into soil and harm plants.</p>
+            </div>
+
+            <div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <h3>📋 Substances Added to Soil:</h3>
+                <ul class="example-list">
+                    <li><strong>Rainwater:</strong> Naturally soaks into soil and provides moisture</li>
+                    <li><strong>Fertilizer:</strong> Adds nutrients to help plants grow</li>
+                    <li><strong>Pesticides:</strong> Chemicals to kill harmful bugs</li>
+                    <li><strong>Organic Matter:</strong> Dead leaves and plant material that enriches soil</li>
+                    <li><strong>Pollutants:</strong> Harmful chemicals, oil, and litter that damage soil</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌍 Effects on Soil Health</h2>
+            
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>Different substances have different <strong>effects</strong> on soil health. An effect is what happens when something is added - it's the result or change that occurs. Understanding these effects helps us take better care of soil.</p>
+                <p>When we add <strong>compost and natural fertilizers</strong>, the soil becomes darker, richer, and more crumbly. It can hold more water and has more nutrients. Plants grow better, and helpful creatures like worms thrive. This is a positive effect!</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p>However, adding too many <strong>chemical fertilizers</strong> can actually hurt soil over time. While plants might grow quickly at first, the soil can become dependent on chemicals and lose its natural nutrients. The helpful bacteria and fungi in soil can die, making the soil less healthy in the long run.</p>
+                <p>When <strong>pesticides</strong> are overused, they kill not just bad bugs but also good ones. Earthworms might leave or die, and beneficial insects disappear. Without these helpful creatures, the soil becomes less alive and productive. The soil structure can break down, making it harder for water and air to move through.</p>
+            </div>
+
+            <div class="content-block">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+                <p><strong>Pollution</strong> has very bad effects on soil health. Chemicals and oil can poison the soil, making it impossible for plants to grow. The soil might change color, smell bad, or become hard and crusty. Animals won't want to live in polluted soil because it's not safe for them.</p>
+                <p>Adding <strong>organic matter</strong> like leaves and compost has wonderful effects! The soil becomes softer and easier for roots to grow through. It holds moisture better so plants don't dry out as quickly. More living creatures move in, and the soil becomes a vibrant ecosystem full of life.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Drag and Drop Activity</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Sort these substances by their effects: Good for Soil or Bad for Soil!</p>
+            
+            <div class="drag-drop-area">
+                <div class="drag-items">
+                    <h3>Drag these items:</h3>
+                    <div class="draggable-item" draggable="true" data-category="good" data-unit="4">Compost</div>
+                    <div class="draggable-item" draggable="true" data-category="bad" data-unit="4">Oil spills</div>
+                    <div class="draggable-item" draggable="true" data-category="good" data-unit="4">Dead leaves</div>
+                    <div class="draggable-item" draggable="true" data-category="bad" data-unit="4">Too many pesticides</div>
+                    <div class="draggable-item" draggable="true" data-category="good" data-unit="4">Natural fertilizer</div>
+                    <div class="draggable-item" draggable="true" data-category="bad" data-unit="4">Chemical pollution</div>
+                </div>
+                
+                <div class="drop-zones">
+                    <div class="drop-zone" data-category="good" data-unit="4">
+                        <div class="drop-zone-label">✅ Good for Soil</div>
+                    </div>
+                    <div class="drop-zone" data-category="bad" data-unit="4">
+                        <div class="drop-zone-label">❌ Bad for Soil</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="check-button" onclick="checkDragDrop(4)">Check My Answers!</button>
+            <div class="feedback" id="dragDropFeedback4"></div>
+        </div>
+
+        <div class="section">
+            <h2>✏️ Fill in the Blanks</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words!</p>
+            
+            <div class="fill-blank-question">
+                <p>1. <input type="text" class="blank-input" data-answer="Fertilizer" placeholder="______" data-unit="4"> contains nutrients that help plants grow big and strong.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>2. <input type="text" class="blank-input" data-answer="Pesticides" placeholder="______" data-unit="4"> are chemicals used to kill bugs that eat crops.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>3. <input type="text" class="blank-input" data-answer="Organic" placeholder="______" data-unit="4"> matter like dead leaves enriches the soil naturally.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>4. When it rains, <input type="text" class="blank-input" data-answer="water" placeholder="______" data-unit="4"> is absorbed by the soil.</p>
+            </div>
+
+            <div class="fill-blank-question">
+                <p>5. <input type="text" class="blank-input" data-answer="Pollution" placeholder="______" data-unit="4"> can add harmful substances like oil and chemicals to soil.</p>
+            </div>
+
+            <button class="check-button" onclick="checkFillBlanks(4)">Check My Answers!</button>
+            <div class="feedback" id="fillBlankFeedback4"></div>
+        </div>
+
+        <div class="section">
+            <h2>📝 Quiz Time!</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+
+            <div class="quiz-question" data-unit="4">
+                <h4>1. What does fertilizer do for soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="true">Adds nutrients to help plants grow</div>
+                    <div class="quiz-option" data-correct="false">Removes all the water</div>
+                    <div class="quiz-option" data-correct="false">Kills all living things</div>
+                    <div class="quiz-option" data-correct="false">Makes soil hard like concrete</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="4">
+                <h4>2. What can happen if too many pesticides are used?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">The soil becomes super healthy</div>
+                    <div class="quiz-option" data-correct="true">Helpful creatures like earthworms can die</div>
+                    <div class="quiz-option" data-correct="false">Plants grow bigger</div>
+                    <div class="quiz-option" data-correct="false">The soil turns blue</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="4">
+                <h4>3. What is organic matter?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Rocks and minerals</div>
+                    <div class="quiz-option" data-correct="false">Chemical fertilizers</div>
+                    <div class="quiz-option" data-correct="true">Dead leaves and plant material</div>
+                    <div class="quiz-option" data-correct="false">Plastic and metal</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="4">
+                <h4>4. What effect does pollution have on soil?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Makes it healthier</div>
+                    <div class="quiz-option" data-correct="true">Poisons it and stops plants from growing</div>
+                    <div class="quiz-option" data-correct="false">Adds good nutrients</div>
+                    <div class="quiz-option" data-correct="false">Attracts more worms</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" data-unit="4">
+                <h4>5. Which substance is BEST for soil health?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">Oil spills</div>
+                    <div class="quiz-option" data-correct="true">Compost made from food scraps</div>
+                    <div class="quiz-option" data-correct="false">Lots of chemical pesticides</div>
+                    <div class="quiz-option" data-correct="false">Garbage and litter</div>
+                </div>
+            </div>
+
+            <button class="check-button" onclick="checkQuiz(4)">Check My Answers!</button>
+            <div class="score-display" id="quizScore4"></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill4"></div>
+        </div>
+    </div>
+
+    
+        </div>
+
+        <!-- Unit 5 -->
+        <div id="unit5" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+<div class="unit-number">Unit 5: E2.3</div>
+<h1>Ontario Soils and Growing Food</h1>
+</header>
+            
+
+<div class="section">
+<h2>🌍 Types of Soil in Ontario</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Ontario has many different types of <strong>soil</strong>! The type of soil depends on what kinds of rocks broke down to make it and what has been added to it over time. Each type of soil is special and good for growing different things.</p>
+<p><strong>Sandy soil</strong> has large particles that you can see and feel. It feels gritty, like sand at the beach. Water drains through sandy soil very quickly because there are big spaces between the particles. Sandy soil warms up fast in spring, which is good for some crops.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Clay soil</strong> is made of the tiniest particles. When clay is wet, it feels smooth and sticky, and you can mold it like playdough. Clay holds water very well - sometimes too well! It can become waterlogged and hard for roots to grow through. But clay soil is rich in nutrients.</p>
+<p><strong>Silt soil</strong> has medium-sized particles that are smaller than sand but bigger than clay. It feels smooth and soft, like flour. Silt soil is very fertile, which means it's great for growing plants. It holds moisture well but also drains better than clay.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Loam</strong> is the best soil for most plants! It's a mixture of sand, silt, and clay all together. Loam has the perfect balance - it drains well but also holds enough water and nutrients for plants. It's dark and crumbly and full of organic matter. Most Ontario farms try to create loamy soil.</p>
+<p>Different parts of Ontario have different soils. Near the Great Lakes, there's often clay-rich soil. In other areas, you might find more sandy or loamy soil. Farmers learn what type of soil they have and choose crops that will grow best in it.</p>
+</div>
+<div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<h3>🌍 Ontario Soil Types:</h3>
+<ul class="example-list">
+<li><strong>Sandy Soil:</strong> Drains quickly, warms fast, feels gritty</li>
+<li><strong>Silt Soil:</strong> Smooth and fertile, holds moisture well</li>
+<li><strong>Clay Soil:</strong> Tiny particles, holds water, rich in nutrients</li>
+<li><strong>Loam Soil:</strong> Perfect mix of sand, silt, and clay - best for growing!</li>
+<li><strong>Different Areas:</strong> Ontario has all these soil types in different regions</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2>🌍 Growing Different Foods in Different Soils</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Different <strong>crops</strong> (plants that farmers grow for food) like different types of soil! Understanding which crops grow best in which soil helps farmers be successful. This is why Ontario can grow so many different kinds of food.</p>
+<p><strong>Carrots and potatoes</strong> love sandy or loamy soil! These root vegetables need loose soil that their roots can easily push through as they grow. Sandy soil is perfect because it's not too packed down. If you tried to grow a long carrot in hard clay, it would grow all twisted and bent!</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Wheat and corn</strong> grow well in loam soil because they need good drainage but also lots of nutrients. Ontario grows tons of wheat and corn in areas with loamy soil. These grains are used to make bread, cereal, and many other foods we eat every day.</p>
+<p><strong>Soybeans</strong> also like loam soil and are grown a lot in Ontario. Clay soil can work for soybeans too, as long as it's not too wet. Soybeans are amazing because they actually add nutrients back to the soil while they grow!</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Lettuce and other leafy vegetables</strong> prefer rich, loamy soil with lots of organic matter. They need soil that holds moisture but doesn't get waterlogged. Ontario farmers grow delicious lettuce, spinach, and kale in well-prepared loam.</p>
+<p><strong>Fruit trees</strong> like apples and peaches need deep, well-drained soil. Loamy or sandy-loam soil works great for fruit orchards. Ontario is famous for its apples, and they grow best in soil that drains well but still has good nutrients. The Niagara region has perfect soil for peaches and grapes!</p>
+</div>
+</div>
+
+<div class="section">
+<h2>🎯 Drag and Drop Activity</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Match each crop to the soil type it grows best in!</p>
+<div class="drag-drop-area">
+<div class="drag-items">
+<h3>Drag these items:</h3>
+<div class="draggable-item" draggable="true" data-category="sandy" data-unit="5">Carrots</div>
+<div class="draggable-item" draggable="true" data-category="loam" data-unit="5">Wheat</div>
+<div class="draggable-item" draggable="true" data-category="sandy" data-unit="5">Potatoes</div>
+<div class="draggable-item" draggable="true" data-category="loam" data-unit="5">Lettuce</div>
+<div class="draggable-item" draggable="true" data-category="loam" data-unit="5">Corn</div>
+<div class="draggable-item" draggable="true" data-category="loam" data-unit="5">Apple trees</div>
+</div>
+<div class="drop-zones">
+<div class="drop-zone" data-category="sandy" data-unit="5">
+<div class="drop-zone-label">🏖️ Sandy/Loose Soil</div>
+</div>
+<div class="drop-zone" data-category="loam" data-unit="5">
+<div class="drop-zone-label">🌍 Loam Soil</div>
+</div>
+</div>
+</div>
+<button class="check-button" onclick="checkDragDrop(5)">Check My Answers!</button>
+<div class="feedback" id="dragDropFeedback5"></div>
+</div>
+
+<div class="section">
+<h2>✏️ Fill in the Blanks</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words!</p>
+<div class="fill-blank-question">
+<p>1. <input type="text" class="blank-input" data-answer="Sandy" placeholder="______" data-unit="5"> soil feels gritty and drains water very quickly.</p>
+</div>
+<div class="fill-blank-question">
+<p>2. <input type="text" class="blank-input" data-answer="Clay" placeholder="______" data-unit="5"> soil is made of the tiniest particles and feels smooth when wet.</p>
+</div>
+<div class="fill-blank-question">
+<p>3. <input type="text" class="blank-input" data-answer="Loam" placeholder="______" data-unit="5"> is the best soil for most plants because it's a mixture of sand, silt, and clay.</p>
+</div>
+<div class="fill-blank-question">
+<p>4. Carrots and <input type="text" class="blank-input" data-answer="potatoes" placeholder="______" data-unit="5"> need loose soil so their roots can grow easily.</p>
+</div>
+<div class="fill-blank-question">
+<p>5. Ontario grows lots of <input type="text" class="blank-input" data-answer="wheat" placeholder="______" data-unit="5"> and corn in areas with loamy soil.</p>
+</div>
+<button class="check-button" onclick="checkFillBlanks(5)">Check My Answers!</button>
+<div class="feedback" id="fillBlankFeedback5"></div>
+</div>
+
+<div class="section">
+<h2>📝 Quiz Time!</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+<div class="quiz-question" data-unit="5">
+<h4>1. Which soil type is best for most plants?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Only sand</div>
+<div class="quiz-option" data-correct="true">Loam (mixture of sand, silt, and clay)</div>
+<div class="quiz-option" data-correct="false">Only clay</div>
+<div class="quiz-option" data-correct="false">Concrete</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="5">
+<h4>2. Why do carrots grow well in sandy soil?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="true">It's loose so their roots can push through easily</div>
+<div class="quiz-option" data-correct="false">It's very hard and compact</div>
+<div class="quiz-option" data-correct="false">It has no nutrients</div>
+<div class="quiz-option" data-correct="false">Carrots don't grow in sandy soil</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="5">
+<h4>3. What does clay soil feel like when wet?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Rough and gritty</div>
+<div class="quiz-option" data-correct="true">Smooth and sticky like playdough</div>
+<div class="quiz-option" data-correct="false">Dry and dusty</div>
+<div class="quiz-option" data-correct="false">Hard like a rock</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="5">
+<h4>4. Which crops grow well in loam soil?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">No crops grow in loam</div>
+<div class="quiz-option" data-correct="true">Wheat, corn, lettuce, and apple trees</div>
+<div class="quiz-option" data-correct="false">Only weeds</div>
+<div class="quiz-option" data-correct="false">Fish and seaweed</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="5">
+<h4>5. What is silt soil like?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Very gritty with large particles</div>
+<div class="quiz-option" data-correct="true">Smooth and fertile with medium-sized particles</div>
+<div class="quiz-option" data-correct="false">Impossible to grow anything in</div>
+<div class="quiz-option" data-correct="false">Always dry and dusty</div>
+</div>
+</div>
+<button class="check-button" onclick="checkQuiz(5)">Check My Answers!</button>
+<div class="score-display" id="quizScore5"></div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill5"></div></div>
+</div>
+
+        </div>
+
+        <!-- Unit 6 -->
+        <div id="unit6" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+<div class="unit-number">Unit 6: E2.4</div>
+<h1>Erosion and Its Effects</h1>
+</header>
+            
+<div class="section">
+<h2>🌍 What is Erosion?</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Erosion</strong> is when soil gets moved from one place to another. Imagine if someone scraped the frosting off a cake and moved it somewhere else - that's kind of like what erosion does to soil! Erosion is a natural process, but it can be a big problem when too much soil is lost.</p>
+<p>Erosion happens when <strong>wind</strong> or <strong>water</strong> picks up soil and carries it away. Think about when you blow on sand at the beach - the sand moves away from where it was. That's wind erosion! Or when rain makes little rivers that wash dirt down a hill - that's water erosion.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Erosion can happen slowly over many years, or it can happen quickly during a big storm. When soil erodes, the top layer (which is the most fertile and full of nutrients) gets washed or blown away first. This leaves behind soil that isn't as good for growing plants.</p>
+<p>You can see erosion happening in many places. If you've ever seen a bare hillside with grooves running down it after rain, that's erosion! Or sand dunes at the beach that change shape when the wind blows - that's erosion too. Even farmers' fields can have erosion problems if the soil isn't protected.</p>
+</div>
+<div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<h3>💨 What Causes Erosion:</h3>
+<ul class="example-list">
+<li><strong>Wind:</strong> Blows dry, loose soil away from bare ground</li>
+<li><strong>Rain:</strong> Washes soil down slopes and into streams</li>
+<li><strong>Rivers:</strong> Moving water carries soil along river banks</li>
+<li><strong>No Plants:</strong> Without roots to hold it, soil erodes easily</li>
+<li><strong>Steep Hills:</strong> Water runs faster down hills, carrying more soil</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2>🌍 Impact of Erosion on Soils</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Erosion has serious <strong>impacts</strong> (effects) on soil. The biggest impact is that erosion removes the rich <strong>topsoil</strong> - the dark, nutrient-filled top layer where plants grow best. Without topsoil, it becomes very hard to grow healthy plants and crops.</p>
+<p>When topsoil erodes away, what's left behind is often hard, rocky soil that has fewer nutrients. Farmers can't grow as much food, and the land becomes less productive. It can take hundreds of years for nature to make new topsoil, so losing it is a big problem!</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Erosion can create <strong>gullies</strong> - deep ditches carved into the land by running water. These gullies make the land hard to farm and can grow bigger over time. The eroded soil has to go somewhere, and it often ends up in rivers and lakes, making the water muddy and dirty.</p>
+<p>When soil washes into water, it can harm fish and other water animals. The muddy water blocks sunlight that underwater plants need. The eroded soil can also carry pollution and chemicals into the water, making it unsafe. This shows how erosion doesn't just hurt the land - it affects water too!</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Erosion makes soil less able to hold <strong>water</strong>. When the good topsoil is gone, rain can't soak in as well. This means during dry times, there's no water stored in the soil for plants. It also means during heavy rain, more water runs off quickly, which can cause flooding.</p>
+<p>The good news is that erosion can be prevented! By planting trees and grass, covering bare soil, and being careful about how we use land, we can protect soil from erosion. Understanding erosion helps us take better care of our soil and keep it healthy for growing food.</p>
+</div>
+</div>
+
+<div class="section">
+<h2>🎯 Drag and Drop Activity</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Match these to either "Causes Erosion" or "Prevents Erosion"!</p>
+<div class="drag-drop-area">
+<div class="drag-items">
+<h3>Drag these items:</h3>
+<div class="draggable-item" draggable="true" data-category="causes" data-unit="6">Strong wind on bare soil</div>
+<div class="draggable-item" draggable="true" data-category="prevents" data-unit="6">Planting trees</div>
+<div class="draggable-item" draggable="true" data-category="causes" data-unit="6">Heavy rain on steep hills</div>
+<div class="draggable-item" draggable="true" data-category="prevents" data-unit="6">Growing grass</div>
+<div class="draggable-item" draggable="true" data-category="causes" data-unit="6">Removing all plants</div>
+<div class="draggable-item" draggable="true" data-category="prevents" data-unit="6">Covering soil with mulch</div>
+</div>
+<div class="drop-zones">
+<div class="drop-zone" data-category="causes" data-unit="6">
+<div class="drop-zone-label">❌ Causes Erosion</div>
+</div>
+<div class="drop-zone" data-category="prevents" data-unit="6">
+<div class="drop-zone-label">✅ Prevents Erosion</div>
+</div>
+</div>
+</div>
+<button class="check-button" onclick="checkDragDrop(6)">Check My Answers!</button>
+<div class="feedback" id="dragDropFeedback6"></div>
+</div>
+
+<div class="section">
+<h2>✏️ Fill in the Blanks</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words!</p>
+<div class="fill-blank-question">
+<p>1. <input type="text" class="blank-input" data-answer="Erosion" placeholder="______" data-unit="6"> is when soil gets moved from one place to another.</p>
+</div>
+<div class="fill-blank-question">
+<p>2. The two main causes of erosion are <input type="text" class="blank-input" data-answer="wind" placeholder="______" data-unit="6"> and water.</p>
+</div>
+<div class="fill-blank-question">
+<p>3. The rich, nutrient-filled top layer of soil is called <input type="text" class="blank-input" data-answer="topsoil" placeholder="______" data-unit="6">.</p>
+</div>
+<div class="fill-blank-question">
+<p>4. Deep ditches carved into land by running water are called <input type="text" class="blank-input" data-answer="gullies" placeholder="______" data-unit="6">.</p>
+</div>
+<div class="fill-blank-question">
+<p>5. Planting <input type="text" class="blank-input" data-answer="trees" placeholder="______" data-unit="6"> and grass helps prevent erosion.</p>
+</div>
+<button class="check-button" onclick="checkFillBlanks(6)">Check My Answers!</button>
+<div class="feedback" id="fillBlankFeedback6"></div>
+</div>
+
+<div class="section">
+<h2>📝 Quiz Time!</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+<div class="quiz-question" data-unit="6">
+<h4>1. What is erosion?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">When soil gets healthier</div>
+<div class="quiz-option" data-correct="true">When soil gets moved from one place to another</div>
+<div class="quiz-option" data-correct="false">When plants grow in soil</div>
+<div class="quiz-option" data-correct="false">When soil gets watered</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="6">
+<h4>2. What are the two main causes of erosion?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Sunshine and moonlight</div>
+<div class="quiz-option" data-correct="true">Wind and water</div>
+<div class="quiz-option" data-correct="false">Trees and flowers</div>
+<div class="quiz-option" data-correct="false">Rocks and minerals</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="6">
+<h4>3. Why is losing topsoil a problem?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="true">It's the most fertile layer and takes hundreds of years to form</div>
+<div class="quiz-option" data-correct="false">It makes soil healthier</div>
+<div class="quiz-option" data-correct="false">It helps plants grow better</div>
+<div class="quiz-option" data-correct="false">It's not a problem at all</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="6">
+<h4>4. What happens when eroded soil washes into rivers?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">The water becomes clearer</div>
+<div class="quiz-option" data-correct="true">It makes water muddy and can harm fish</div>
+<div class="quiz-option" data-correct="false">It helps fish grow bigger</div>
+<div class="quiz-option" data-correct="false">Nothing happens</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="6">
+<h4>5. How can we prevent erosion?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Remove all plants from the soil</div>
+<div class="quiz-option" data-correct="false">Leave soil bare and uncovered</div>
+<div class="quiz-option" data-correct="true">Plant trees and grass to hold soil in place</div>
+<div class="quiz-option" data-correct="false">Pour water on steep hills</div>
+</div>
+</div>
+<button class="check-button" onclick="checkQuiz(6)">Check My Answers!</button>
+<div class="score-display" id="quizScore6"></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill6"></div></div>
+</div>
+
+        </div>
+
+        <!-- Unit 7 -->
+        <div id="unit7" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+<div class="unit-number">Unit 7: E2.5</div>
+<h1>Keeping Soil Healthy</h1>
+</header>
+            
+<div class="section">
+<h2>🌍 Keeping Soil Healthy</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>There are many <strong>strategies</strong> (special methods or plans) that people in Ontario use to keep soil healthy and productive. These strategies help make sure we can keep growing food for many years to come! Healthy soil means healthy food for everyone.</p>
+<p>One important strategy is <strong>crop rotation</strong>. This means farmers don't grow the same crop in the same field year after year. Instead, they switch between different crops. For example, one year they might grow corn, the next year soybeans, then wheat. This keeps the soil balanced because different crops use different nutrients.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Cover crops</strong> are plants that farmers grow not to eat, but to protect and improve the soil! After harvesting their main crop, farmers plant cover crops like clover or rye grass. These plants cover the bare soil, preventing erosion and adding nutrients when they decompose. It's like giving the soil a warm blanket!</p>
+<p>Farmers also use <strong>reduced tillage</strong> or <strong>no-till farming</strong>. Tillage means turning over the soil with machines before planting. While this can be helpful, doing it less often keeps the soil structure intact and protects all the living creatures in the soil. The soil stays healthier when it's not disturbed too much.</p>
+</div>
+<div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<h3>🌱 Soil Health Strategies:</h3>
+<ul class="example-list">
+<li><strong>Crop Rotation:</strong> Growing different crops each year</li>
+<li><strong>Cover Crops:</strong> Planting protective plants between main crops</li>
+<li><strong>Reduced Tillage:</strong> Disturbing soil less to protect its structure</li>
+<li><strong>Adding Compost:</strong> Putting nutrient-rich organic matter into soil</li>
+<li><strong>Preventing Erosion:</strong> Planting windbreaks and ground cover</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2>🌍 More Ways to Improve Soil</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Adding <strong>organic matter</strong> is one of the best things you can do for soil! Organic matter includes compost, animal manure, dead leaves, and plant material. When added to soil, it feeds the microorganisms and earthworms, improves soil structure, and adds nutrients naturally.</p>
+<p>Ontario farmers often use <strong>manure</strong> from cows, chickens, or pigs to enrich their soil. This natural fertilizer is full of nutrients that plants need. It's important to use the right amount though - too much can cause problems, but the right amount makes soil super healthy!</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Planting trees and shrubs</strong> around fields creates windbreaks that slow down wind and prevent wind erosion. Trees also add organic matter to soil when their leaves fall. Plus, their deep roots help break up hard soil and create channels for water and air to move through.</p>
+<p><strong>Testing soil</strong> regularly helps farmers know exactly what their soil needs. Just like you might get a check-up at the doctor, soil can be tested to see if it has enough nutrients or if something needs to be added. This prevents farmers from adding too much or too little of anything.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Using <strong>natural pest control</strong> instead of lots of chemicals helps keep soil healthy. This might mean using helpful insects that eat harmful bugs, or planting certain flowers that attract beneficial creatures. Healthy soil with lots of living things in it is naturally more resistant to pests and diseases.</p>
+<p>Everyone can help maintain soil health - not just farmers! In your backyard or school garden, you can compost food scraps, add mulch to gardens, plant native plants, and avoid using too many chemicals. Every little bit helps protect this precious resource!</p>
+</div>
+</div>
+
+<div class="section">
+<h2>🎯 Drag and Drop Activity</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Match each action to its benefit for soil health!</p>
+<div class="drag-drop-area">
+<div class="drag-items">
+<h3>Drag these items:</h3>
+<div class="draggable-item" draggable="true" data-category="nutrients" data-unit="7">Adding compost</div>
+<div class="draggable-item" draggable="true" data-category="erosion" data-unit="7">Planting cover crops</div>
+<div class="draggable-item" draggable="true" data-category="nutrients" data-unit="7">Crop rotation</div>
+<div class="draggable-item" draggable="true" data-category="erosion" data-unit="7">Planting trees as windbreaks</div>
+<div class="draggable-item" draggable="true" data-category="structure" data-unit="7">Reduced tillage</div>
+<div class="draggable-item" draggable="true" data-category="nutrients" data-unit="7">Using manure</div>
+</div>
+<div class="drop-zones">
+<div class="drop-zone" data-category="nutrients" data-unit="7">
+<div class="drop-zone-label">🌱 Adds Nutrients</div>
+</div>
+<div class="drop-zone" data-category="erosion" data-unit="7">
+<div class="drop-zone-label">🛡️ Prevents Erosion</div>
+</div>
+<div class="drop-zone" data-category="structure" data-unit="7">
+<div class="drop-zone-label">🏗️ Protects Structure</div>
+</div>
+</div>
+</div>
+<button class="check-button" onclick="checkDragDrop(7)">Check My Answers!</button>
+<div class="feedback" id="dragDropFeedback7"></div>
+</div>
+
+<div class="section">
+<h2>✏️ Fill in the Blanks</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words!</p>
+<div class="fill-blank-question">
+<p>1. <input type="text" class="blank-input" data-answer="Crop" placeholder="______" data-unit="7"> rotation means growing different crops each year in the same field.</p>
+</div>
+<div class="fill-blank-question">
+<p>2. <input type="text" class="blank-input" data-answer="Cover" placeholder="______" data-unit="7"> crops are plants grown to protect and improve soil, not to eat.</p>
+</div>
+<div class="fill-blank-question">
+<p>3. Adding <input type="text" class="blank-input" data-answer="organic" placeholder="______" data-unit="7"> matter like compost feeds microorganisms in the soil.</p>
+</div>
+<div class="fill-blank-question">
+<p>4. Reduced <input type="text" class="blank-input" data-answer="tillage" placeholder="______" data-unit="7"> means disturbing the soil less with machines.</p>
+</div>
+<div class="fill-blank-question">
+<p>5. Planting <input type="text" class="blank-input" data-answer="trees" placeholder="______" data-unit="7"> around fields creates windbreaks that prevent erosion.</p>
+</div>
+<button class="check-button" onclick="checkFillBlanks(7)">Check My Answers!</button>
+<div class="feedback" id="fillBlankFeedback7"></div>
+</div>
+
+<div class="section">
+<h2>📝 Quiz Time!</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+<div class="quiz-question" data-unit="7">
+<h4>1. What is crop rotation?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Spinning crops in circles</div>
+<div class="quiz-option" data-correct="true">Growing different crops each year in the same field</div>
+<div class="quiz-option" data-correct="false">Never planting crops</div>
+<div class="quiz-option" data-correct="false">Growing only one crop forever</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="7">
+<h4>2. Why are cover crops important?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="true">They protect soil from erosion and add nutrients</div>
+<div class="quiz-option" data-correct="false">They make soil hard</div>
+<div class="quiz-option" data-correct="false">They remove all nutrients</div>
+<div class="quiz-option" data-correct="false">They are not important</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="7">
+<h4>3. What does reduced tillage do?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Destroys all soil structure</div>
+<div class="quiz-option" data-correct="true">Keeps soil structure intact and protects living creatures</div>
+<div class="quiz-option" data-correct="false">Removes all water from soil</div>
+<div class="quiz-option" data-correct="false">Makes soil impossible to farm</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="7">
+<h4>4. What is organic matter?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Rocks and minerals only</div>
+<div class="quiz-option" data-correct="true">Compost, manure, dead leaves, and plant material</div>
+<div class="quiz-option" data-correct="false">Chemical fertilizers</div>
+<div class="quiz-option" data-correct="false">Plastic and metal</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="7">
+<h4>5. How do windbreaks help soil?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">They blow soil away faster</div>
+<div class="quiz-option" data-correct="true">They slow wind and prevent wind erosion</div>
+<div class="quiz-option" data-correct="false">They remove all water from soil</div>
+<div class="quiz-option" data-correct="false">They don't help soil at all</div>
+</div>
+</div>
+<button class="check-button" onclick="checkQuiz(7)">Check My Answers!</button>
+<div class="score-display" id="quizScore7"></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill7"></div></div>
+</div>
+
+        </div>
+
+        <!-- Unit 8 -->
+        <div id="unit8" class="unit-content">
+            <button class="back-to-menu" onclick="showMenu()">⬅ Back to Menu</button>
+            <header>
+<div class="unit-number">Unit 8: E2.6</div>
+<h1>Composting for Healthy Soil</h1>
+</header>
+            
+<div class="section">
+<h2>🌍 What is Composting?</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p><strong>Composting</strong> is nature's way of recycling! It's the process of taking organic materials like food scraps and yard waste and letting them break down naturally to create rich, dark soil. Think of it as making healthy food for your garden out of things you would normally throw away!</p>
+<p>When you compost, tiny <strong>microorganisms</strong> (bacteria and fungi) and bigger creatures like <strong>worms</strong> and <strong>insects</strong> work together to break down the organic matter. They eat the old food scraps and leaves, and what comes out is beautiful, nutrient-rich compost that looks and smells like rich soil.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>The composting process needs four main things to work well: <strong>browns</strong> (dry materials like dead leaves and paper), <strong>greens</strong> (fresh materials like fruit peels and grass clippings), <strong>water</strong> (to keep everything moist), and <strong>air</strong> (so the microorganisms can breathe).</p>
+<p>Browns provide <strong>carbon</strong>, which gives energy to the decomposers. Greens provide <strong>nitrogen</strong>, which helps them grow and multiply. When you mix browns and greens together in the right amounts, with some water and air, the composting magic happens! The pile heats up as the microorganisms work, and over a few weeks or months, everything transforms into compost.</p>
+</div>
+<div class="example-box">
+                <button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<h3>♻️ What Goes in Compost:</h3>
+<ul class="example-list">
+<li><strong>Greens:</strong> Fruit and veggie scraps, grass clippings, coffee grounds</li>
+<li><strong>Browns:</strong> Dry leaves, shredded paper, cardboard, twigs</li>
+<li><strong>Don't Add:</strong> Meat, dairy, oils, pet waste (these attract pests!)</li>
+<li><strong>Also Good:</strong> Eggshells, tea bags, plant trimmings</li>
+<li><strong>Keep Out:</strong> Plastics, metals, treated wood</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2>🌍 Benefits of Composting</h2>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Composting has so many amazing <strong>benefits</strong>! First, it reduces waste. Instead of throwing food scraps and yard waste in the garbage where they go to a landfill, we turn them into something useful. In Ontario, many families and schools compost and keep tons of waste out of landfills every year!</p>
+<p>Compost is like a <strong>superfood for soil</strong>. When you add compost to your garden or farm fields, it makes the soil darker, richer, and more fertile. The compost adds nutrients that plants need to grow strong and healthy. It's much better than chemical fertilizers because it's completely natural!</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Compost improves <strong>soil structure</strong>. It makes heavy clay soil lighter and easier for roots to grow through. It makes sandy soil better at holding water and nutrients. No matter what type of soil you have, adding compost makes it better! The soil becomes more crumbly and easier to work with.</p>
+<p>Using compost helps soil hold more <strong>water</strong>, which means you don't have to water your plants as much. This saves water - an important resource! During dry times, plants in composted soil do better because the soil acts like a sponge, storing moisture for the plants to use.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Compost brings <strong>life</strong> to the soil! It's full of beneficial bacteria, fungi, and other microorganisms. When you add compost, you're adding billions of these helpful creatures that continue to work in the soil, breaking down organic matter and making nutrients available to plants.</p>
+<p>Composting is also good for the <strong>environment</strong>! When organic waste goes to landfills, it breaks down without air and creates methane - a greenhouse gas that contributes to climate change. But when we compost with air, very little methane is created. Plus, by making our own compost, we reduce the need for chemical fertilizers that require a lot of energy to make.</p>
+</div>
+<div class="content-block">
+<button class="read-aloud" onclick="readAloud(this)">🔊 Read Aloud</button>
+<p>Anyone can compost! You can have a compost bin in your backyard, use a tumbler composter, or even do <strong>vermicomposting</strong> (composting with special worms) in a small bin indoors. Many Ontario cities also collect compost from homes in green bins. Every bit of composting helps create healthy soil and protect our environment!</p>
+</div>
+</div>
+
+<div class="section">
+<h2>🎯 Drag and Drop Activity</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Sort these items: Can it go in the compost or not?</p>
+<div class="drag-drop-area">
+<div class="drag-items">
+<h3>Drag these items:</h3>
+<div class="draggable-item" draggable="true" data-category="yes" data-unit="8">Apple cores</div>
+<div class="draggable-item" draggable="true" data-category="no" data-unit="8">Plastic bags</div>
+<div class="draggable-item" draggable="true" data-category="yes" data-unit="8">Dry leaves</div>
+<div class="draggable-item" draggable="true" data-category="no" data-unit="8">Meat scraps</div>
+<div class="draggable-item" draggable="true" data-category="yes" data-unit="8">Grass clippings</div>
+<div class="draggable-item" draggable="true" data-category="yes" data-unit="8">Cardboard</div>
+</div>
+<div class="drop-zones">
+<div class="drop-zone" data-category="yes" data-unit="8">
+<div class="drop-zone-label">✅ Goes in Compost</div>
+</div>
+<div class="drop-zone" data-category="no" data-unit="8">
+<div class="drop-zone-label">❌ Keep Out of Compost</div>
+</div>
+</div>
+</div>
+<button class="check-button" onclick="checkDragDrop(8)">Check My Answers!</button>
+<div class="feedback" id="dragDropFeedback8"></div>
+</div>
+
+<div class="section">
+<h2>✏️ Fill in the Blanks</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Read the sentences and fill in the missing words!</p>
+<div class="fill-blank-question">
+<p>1. <input type="text" class="blank-input" data-answer="Composting" placeholder="______" data-unit="8"> is nature's way of recycling organic materials.</p>
+</div>
+<div class="fill-blank-question">
+<p>2. Browns like dry leaves provide <input type="text" class="blank-input" data-answer="carbon" placeholder="______" data-unit="8"> to the compost.</p>
+</div>
+<div class="fill-blank-question">
+<p>3. Greens like fruit scraps provide <input type="text" class="blank-input" data-answer="nitrogen" placeholder="______" data-unit="8"> to help decomposers grow.</p>
+</div>
+<div class="fill-blank-question">
+<p>4. Compost improves soil <input type="text" class="blank-input" data-answer="structure" placeholder="______" data-unit="8"> and makes it easier for roots to grow.</p>
+</div>
+<div class="fill-blank-question">
+<p>5. Composting keeps waste out of <input type="text" class="blank-input" data-answer="landfills" placeholder="______" data-unit="8"> and is good for the environment.</p>
+</div>
+<button class="check-button" onclick="checkFillBlanks(8)">Check My Answers!</button>
+<div class="feedback" id="fillBlankFeedback8"></div>
+</div>
+
+<div class="section">
+<h2>📝 Quiz Time!</h2>
+<p style="font-size: 1.1em; margin-bottom: 20px;">Choose the best answer for each question.</p>
+<div class="quiz-question" data-unit="8">
+<h4>1. What is composting?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Throwing everything in the garbage</div>
+<div class="quiz-option" data-correct="true">Breaking down organic materials to create rich soil</div>
+<div class="quiz-option" data-correct="false">Burning leaves and food</div>
+<div class="quiz-option" data-correct="false">Burying plastic in the ground</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="8">
+<h4>2. What should NOT go in compost?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">Fruit peels</div>
+<div class="quiz-option" data-correct="false">Dry leaves</div>
+<div class="quiz-option" data-correct="true">Meat and dairy products</div>
+<div class="quiz-option" data-correct="false">Grass clippings</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="8">
+<h4>3. What are the four main things compost needs?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="true">Browns, greens, water, and air</div>
+<div class="quiz-option" data-correct="false">Plastic, metal, glass, and paper</div>
+<div class="quiz-option" data-correct="false">Only water</div>
+<div class="quiz-option" data-correct="false">Sunshine, moonlight, stars, and clouds</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="8">
+<h4>4. How does compost help soil?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">It makes soil hard like concrete</div>
+<div class="quiz-option" data-correct="true">It adds nutrients, improves structure, and helps hold water</div>
+<div class="quiz-option" data-correct="false">It removes all the good nutrients</div>
+<div class="quiz-option" data-correct="false">It kills all living things in soil</div>
+</div>
+</div>
+<div class="quiz-question" data-unit="8">
+<h4>5. Why is composting good for the environment?</h4>
+<div class="quiz-options">
+<div class="quiz-option" data-correct="false">It creates more garbage</div>
+<div class="quiz-option" data-correct="true">It reduces landfill waste and greenhouse gases</div>
+<div class="quiz-option" data-correct="false">It pollutes the air</div>
+<div class="quiz-option" data-correct="false">It has no environmental benefits</div>
+</div>
+</div>
+<button class="check-button" onclick="checkQuiz(8)">Check My Answers!</button>
+<div class="score-display" id="quizScore8"></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill8"></div></div>
+</div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Navigation
+        function showMenu() {
+            document.querySelectorAll('.unit-content').forEach(unit => {
+                unit.classList.remove('active');
+            });
+            document.getElementById('unitMenu').style.display = 'grid';
+            document.querySelectorAll('.unit-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            window.scrollTo(0, 0);
+        }
+
+        function showUnit(unitNum) {
+            document.getElementById('unitMenu').style.display = 'none';
+            document.querySelectorAll('.unit-content').forEach(unit => {
+                unit.classList.remove('active');
+            });
+            document.getElementById('unit' + unitNum).classList.add('active');
+            
+            // Highlight the correct menu button (menu has 8 buttons, index = unitNum-1)
+            document.querySelectorAll('#unitMenu .unit-button').forEach((btn, idx) => {
+                if (idx === unitNum - 1) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Text-to-Speech
+        function readAloud(button) {
+            const textContent = button.parentElement.querySelector('p, ul, ol');
+            const text = textContent ? textContent.innerText : button.parentElement.innerText;
+            
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+                
+                button.textContent = '⏸️ Stop';
+                button.style.background = '#C62828';
+                
+                utterance.onend = function() {
+                    button.textContent = '🔊 Read Aloud';
+                    button.style.background = '';
+                };
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser doesn\'t support text-to-speech!');
+            }
+        }
+
+        // Drag and Drop
+        let draggedElement = null;
+
+        // Hover-to-read
+        let hoverTimer = null;
+        let currentHoverSpeech = null;
+
+        function speakHoverText(el) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                document.querySelectorAll('.speak-on-hover.speaking').forEach(e => e.classList.remove('speaking'));
+                const clone = el.cloneNode(true);
+                clone.querySelectorAll('button, input').forEach(n => n.remove());
+                const text = clone.innerText.trim();
+                if (!text) return;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                utterance.volume = 1;
+                el.classList.add('speaking');
+                utterance.onend = () => { el.classList.remove('speaking'); currentHoverSpeech = null; };
+                utterance.onerror = () => { el.classList.remove('speaking'); currentHoverSpeech = null; };
+                currentHoverSpeech = utterance;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function initHoverRead() {
+            // Add tip banners to interactive sections
+            document.querySelectorAll('.drag-drop-area, .fill-blank-question, .quiz-container, .quiz-question').forEach(container => {
+                const section = container.closest('.section');
+                if (section && !section.querySelector('.hover-tip')) {
+                    const firstP = section.querySelector('p');
+                    if (firstP) {
+                        const tip = document.createElement('p');
+                        tip.className = 'hover-tip';
+                        tip.textContent = '🔊 Hover over any question or answer to hear it read aloud!';
+                        firstP.parentNode.insertBefore(tip, firstP);
+                    }
+                }
+            });
+
+            // Apply hover-to-read to drag items, drop zone labels, fill-blank questions, quiz questions and options
+            document.querySelectorAll(
+                '.draggable-item, .drop-zone-label, .fill-blank-question, .quiz-question h4, .quiz-option'
+            ).forEach(el => {
+                el.classList.add('speak-on-hover');
+                el.addEventListener('mouseenter', () => {
+                    clearTimeout(hoverTimer);
+                    hoverTimer = setTimeout(() => speakHoverText(el), 600);
+                });
+                el.addEventListener('mouseleave', () => {
+                    clearTimeout(hoverTimer);
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupDragAndDrop();
+            setupQuizOptions();
+            initHoverRead();
+        });
+
+        function setupDragAndDrop() {
+            document.querySelectorAll('.draggable-item').forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    draggedElement = this;
+                    this.classList.add('dragging');
+                });
+
+                item.addEventListener('dragend', function(e) {
+                    this.classList.remove('dragging');
+                });
+            });
+
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', function(e) {
+                    this.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    if (draggedElement && draggedElement.dataset.unit === this.dataset.unit) {
+                        this.appendChild(draggedElement);
+                        updateProgress(this.dataset.unit);
+                    }
+                });
+            });
+        }
+
+        function checkDragDrop(unitNum) {
+            const feedback = document.getElementById('dragDropFeedback' + unitNum);
+            const dropZones = document.querySelectorAll('.drop-zone[data-unit="' + unitNum + '"]');
+            let correct = 0;
+            let total = 0;
+
+            dropZones.forEach(zone => {
+                const category = zone.dataset.category;
+                const items = zone.querySelectorAll('.draggable-item[data-unit="' + unitNum + '"]');
+                
+                items.forEach(item => {
+                    total++;
+                    if (item.dataset.category === category) {
+                        correct++;
+                        item.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
+                    } else {
+                        item.style.background = 'linear-gradient(135deg, #F44336, #EF5350)';
+                    }
+                });
+            });
+
+            feedback.style.display = 'block';
+            if (correct === total && total > 0) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '🎉 Perfect! You matched everything correctly!';
+            } else if (total === 0) {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = '⚠️ Please drag the items to the categories first!';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `You got ${correct} out of ${total} correct. Try again!`;
+            }
+            updateProgress(unitNum);
+        }
+
+        function checkFillBlanks(unitNum) {
+            const inputs = document.querySelectorAll('.blank-input[data-unit="' + unitNum + '"]');
+            const feedback = document.getElementById('fillBlankFeedback' + unitNum);
+            let correct = 0;
+            let total = inputs.length;
+
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = input.dataset.answer.toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    input.classList.remove('incorrect');
+                    input.classList.add('correct');
+                    correct++;
+                } else {
+                    input.classList.remove('correct');
+                    input.classList.add('incorrect');
+                }
+            });
+
+            feedback.style.display = 'block';
+            if (correct === total) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '🌟 Excellent! All answers are correct!';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `You got ${correct} out of ${total} correct. Check the text above for the answers!`;
+            }
+            updateProgress(unitNum);
+        }
+
+        function setupQuizOptions() {
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const question = this.closest('.quiz-question');
+                    const unitNum = question.dataset.unit;
+                    question.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    updateProgress(unitNum);
+                });
+            });
+        }
+
+        function checkQuiz(unitNum) {
+            const questions = document.querySelectorAll('.quiz-question[data-unit="' + unitNum + '"]');
+            let correct = 0;
+            let total = questions.length;
+
+            questions.forEach(question => {
+                const options = question.querySelectorAll('.quiz-option');
+                const selected = question.querySelector('.quiz-option.selected');
+                
+                options.forEach(option => {
+                    option.style.pointerEvents = 'none';
+                    if (option.dataset.correct === 'true') {
+                        option.classList.add('correct');
+                    }
+                    if (selected === option && option.dataset.correct === 'false') {
+                        option.classList.add('incorrect');
+                    }
+                });
+
+                if (selected && selected.dataset.correct === 'true') {
+                    correct++;
+                }
+            });
+
+            const scoreDisplay = document.getElementById('quizScore' + unitNum);
+            scoreDisplay.style.display = 'block';
+            const percentage = Math.round((correct / total) * 100);
+            
+            if (percentage === 100) {
+                scoreDisplay.innerHTML = `🏆 Perfect Score! ${correct}/${total} (${percentage}%) - You're a soil expert!`;
+            } else if (percentage >= 80) {
+                scoreDisplay.innerHTML = `⭐ Great Job! ${correct}/${total} (${percentage}%) - Keep it up!`;
+            } else if (percentage >= 60) {
+                scoreDisplay.innerHTML = `👍 Good Try! ${correct}/${total} (${percentage}%) - Review and try again!`;
+            } else {
+                scoreDisplay.innerHTML = `📚 Keep Learning! ${correct}/${total} (${percentage}%) - Read the lesson again!`;
+            }
+            updateProgress(unitNum);
+        }
+
+        function updateProgress(unitNum) {
+            let completed = 0;
+            let total = 3;
+
+            const dropZones = document.querySelectorAll('.drop-zone[data-unit="' + unitNum + '"]');
+            let dragCompleted = false;
+            dropZones.forEach(zone => {
+                if (zone.querySelectorAll('.draggable-item').length > 0) {
+                    dragCompleted = true;
+                }
+            });
+            if (dragCompleted) completed++;
+
+            const blanks = document.querySelectorAll('.blank-input[data-unit="' + unitNum + '"]');
+            let blanksCompleted = Array.from(blanks).every(input => input.value.trim() !== '');
+            if (blanksCompleted) completed++;
+
+            const quizAnswered = document.querySelectorAll('.quiz-question[data-unit="' + unitNum + '"] .quiz-option.selected').length === 5;
+            if (quizAnswered) completed++;
+
+            const progressFill = document.getElementById('progressFill' + unitNum);
+            if (progressFill) {
+                const percentage = (completed / total) * 100;
+                progressFill.style.width = percentage + '%';
+            }
+        }
+    </script>
+</body>
+</html>
