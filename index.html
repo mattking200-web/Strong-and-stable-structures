@@ -687,6 +687,7 @@
 <h4>🛡️ For Protection</h4>
 <div class="dropped-items"></div>
 </div>
+</div>
 <div>
 <button class="check-button" onclick="checkDragDrop(4)">Check</button>
 <button class="reset-button" onclick="resetDragDrop(4)">Reset</button>
@@ -1157,11 +1158,11 @@
 <div class="drag-drop-container">
 <div class="drag-items" id="dragItems7">
 <div class="drag-item" draggable="true">Very strong</div>
-<div class="drag-item" draggable="true">Weak</div>
+<div class="drag-item" draggable="true">Soft</div>
 <div class="drag-item" draggable="true">Flexible</div>
 <div class="drag-item" draggable="true">Rigid</div>
 <div class="drag-item" draggable="true">Waterproof</div>
-<div class="drag-item" draggable="true">Absorbs water</div>
+<div class="drag-item" draggable="true">Foldable</div>
 <div class="drag-item" draggable="true">Lightweight</div>
 <div class="drag-item" draggable="true">Very heavy</div>
 </div><div class="drop-zones"><div class="drop-zone" data-category="concrete">
@@ -1324,7 +1325,7 @@
 <div class="drag-item" draggable="true">Pushes against dams</div>
 <div class="drag-item" draggable="true">Makes tall buildings sway</div>
 <div class="drag-item" draggable="true">Makes roofs collapse</div>
-<div class="drag-item" draggable="true">Affects bridges</div>
+<div class="drag-item" draggable="true">Pulls structures down</div>
 <div class="drag-item" draggable="true">Causes pressure</div>
 </div><div class="drop-zones"><div class="drop-zone" data-category="gravity">
 <h4>⬇️ Gravity Effects</h4>
@@ -1617,8 +1618,8 @@
             4: {writing: ["Pointed tip"], moving: ["Wheels"], light: ["Hollow inside"], rain: ["Triangular roof"], stable: ["Wide base"], protect: ["Curved dome"]},
             5: {increase: ["Using steel instead of plastic", "Adding triangular braces", "Using thicker beams", "Adding more legs"], decrease: ["Making materials thinner", "Removing support columns", "Taking away supports", "Using weaker materials"]},
             6: {stable: ["Wide base", "Low center of gravity", "Anchored to ground", "Weight evenly distributed"], unstable: ["Narrow base", "High center of gravity", "Not attached", "All weight on one side"]},
-            7: {concrete: ["Very strong", "Rigid", "Waterproof", "Very heavy"], fabric: ["Weak", "Flexible", "Lightweight"]},
-            8: {gravity: ["Pulls everything down", "Affects bridges"], wind: ["Pushes sideways", "Makes tall buildings sway"], snow: ["Adds weight to roofs", "Makes roofs collapse"], water: ["Pushes against dams", "Causes pressure"]},
+            7: {concrete: ["Very strong", "Rigid", "Waterproof", "Very heavy"], fabric: ["Soft", "Flexible", "Foldable", "Lightweight"]},
+            8: {gravity: ["Pulls everything down", "Pulls structures down"], wind: ["Pushes sideways", "Makes tall buildings sway"], snow: ["Adds weight to roofs", "Makes roofs collapse"], water: ["Pushes against dams", "Causes pressure"]},
             9: {struts: ["Chair legs", "Table legs", "Support beams", "Building columns"], ties: ["Tent ropes", "Bridge cables", "Suspension cables", "Rope pulling tent"]}
         };
 
@@ -1629,7 +1630,7 @@
             4: {1: ["function"], 2: ["triangular"], 3: ["shape"], 4: ["neck"], 5: ["dome"]},
             5: {1: ["strength"], 2: ["concrete"], 3: ["triangles"], 4: ["thicker"], 5: ["braces"]},
             6: {1: ["stability"], 2: ["gravity"], 3: ["wide"], 4: ["anchored"], 5: ["balance"]},
-            7: {1: ["properties"], 2: ["strength"], 3: ["flexible"], 4: ["waterproof"], 5: ["temperature"]},
+            7: {1: ["properties"], 2: ["strength"], 3: ["flexibility", "flexible"], 4: ["waterproof"], 5: ["temperature"]},
             8: {1: ["forces"], 2: ["gravity"], 3: ["wind"], 4: ["water"], 5: ["compression"]},
             9: {1: ["struts"], 2: ["ties"], 3: ["compression"], 4: ["tension"], 5: ["together"]}
         };
